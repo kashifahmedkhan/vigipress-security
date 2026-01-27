@@ -1,0 +1,17 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Standard Node/Web plugin junk
+node_modules/
+dist/
+build/
+.env
+
+# Logs and databases
+*.log
+*.sqlite
+
+# IDE/Editor specific folders
+.vscode/
+.idea/
