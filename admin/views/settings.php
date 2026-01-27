@@ -268,6 +268,7 @@ settings_errors( 'vigil_security_messages' );
 			</div>
 		</div>
 	</div>
+
 		
 		<!-- Data Management Settings -->
 			<div class="vigil-card">
@@ -364,6 +365,7 @@ settings_errors( 'vigil_security_messages' );
 					</div>
 				</div>
 			</div>
+
 
 		<p class="submit">
 			<button type="submit" class="button button-primary button-large">

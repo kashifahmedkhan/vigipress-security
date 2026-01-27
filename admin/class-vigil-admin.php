@@ -58,9 +58,13 @@ class Vigil_Admin {
 		add_action( 'wp_ajax_vigil_fix_all_issues', array( $this, 'ajax_fix_all_issues' ) );
 		add_action( 'wp_ajax_vigil_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
 		add_action( 'wp_ajax_vigil_unlock_ip', array( $this, 'ajax_unlock_ip' ) ); 
+
 		add_action( 'wp_ajax_vigil_run_file_check', array( $this, 'ajax_run_file_check' ) );
 		add_action( 'wp_ajax_vigil_reset_plugin', array( $this, 'ajax_reset_plugin' ) );
 		add_action( 'wp_ajax_vigil_clear_logs', array( $this, 'ajax_clear_logs' ) );
+
+		add_action( 'wp_ajax_vigil_run_file_check', array( $this, 'ajax_run_file_check' ) );  
+
 	}
 
 	/**
@@ -468,6 +472,7 @@ class Vigil_Admin {
 			return;
 		}
 
+
 		// Update file integrity settings.
 		$settings['file_integrity_enabled'] = isset( $_POST['file_integrity_enabled'] ) ? 1 : 0;
 		$settings['file_integrity_email']   = isset( $_POST['file_integrity_email'] ) ? sanitize_email( wp_unslash( $_POST['file_integrity_email'] ) ) : get_option( 'admin_email' );
@@ -479,6 +484,8 @@ class Vigil_Admin {
 			update_option( 'vigil_security_keep_data_on_uninstall', 0 );
 		}
 		
+
+
 		// Get current settings.
 		$settings = get_option( 'vigil_security_settings', array() );
 
@@ -784,6 +791,7 @@ class Vigil_Admin {
 		wp_send_json_error( array( 'message' => __( 'File integrity module not available', 'vigil-security' ) ) );
 	}
 
+
 	/**
 	 * AJAX handler for resetting plugin to default settings.
 	 *
@@ -900,5 +908,6 @@ class Vigil_Admin {
 			'logs_deleted' => $count_before,
 		) );
 	}
+
 
 }
