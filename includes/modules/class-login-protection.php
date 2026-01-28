@@ -4,13 +4,13 @@
  *
  * Handles brute force protection via rate limiting.
  *
- * @package    Vigil_Security
- * @subpackage Vigil_Security/includes/modules
+ * @package    VigiPress_Security
+ * @subpackage VigiPress_Security/includes/modules
  * @since      1.0.0
  * 
  */
 
-namespace Vigil_Security\Modules;
+namespace VigiPress_Security\Modules;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +39,7 @@ class Login_Protection {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->settings = get_option( 'vigil_security_settings', array() );
+		$this->settings = get_option( 'vigipress_security_settings', array() );
 
 		// Only initialize if login protection is enabled.
 		if ( ! empty( $this->settings['login_protection_enabled'] ) ) {
@@ -78,7 +78,7 @@ class Login_Protection {
 
 		// Check if IP is currently locked out via transient.
 		// Transients auto-expire, so no manual cleanup needed.
-		$lockout_data = get_transient( 'vigil_lockout_' . md5( $ip ) );
+		$lockout_data = get_transient( 'vigipress_lockout_' . md5( $ip ) );
 
 		if ( false !== $lockout_data ) {
 			// Calculate remaining lockout time.
@@ -92,7 +92,7 @@ class Login_Protection {
 				$ip,
 				sprintf(
 					/* translators: %s: remaining lockout time in minutes */
-					__( 'Login attempt blocked. %s minutes remaining in lockout.', 'vigil-security' ),
+					__( 'Login attempt blocked. %s minutes remaining in lockout.', 'vigipress-security' ),
 					ceil( $remaining_time / 60 )
 				),
 				'warning'
@@ -100,10 +100,10 @@ class Login_Protection {
 
 			// Return WP_Error to prevent login.
 			return new \WP_Error(
-				'vigil_ip_blocked',
+				'vigipress_ip_blocked',
 				sprintf(
 					/* translators: %s: remaining lockout time in minutes */
-					__( '<strong>Security Alert:</strong> Too many failed login attempts. Please try again in %s minutes.', 'vigil-security' ),
+					__( '<strong>Security Alert:</strong> Too many failed login attempts. Please try again in %s minutes.', 'vigipress-security' ),
 					ceil( $remaining_time / 60 )
 				)
 			);
@@ -123,7 +123,7 @@ class Login_Protection {
 		$ip = $this->get_user_ip();
 
 		// Get current attempt count from transient.
-		$transient_key = 'vigil_login_attempts_' . md5( $ip );
+		$transient_key = 'vigipress_login_attempts_' . md5( $ip );
 		$attempts      = get_transient( $transient_key );
 
 		if ( false === $attempts ) {
@@ -158,7 +158,7 @@ class Login_Protection {
 			$ip,
 			sprintf(
 				/* translators: 1: attempt number, 2: max attempts */
-				__( 'Failed login attempt (%1$d of %2$d)', 'vigil-security' ),
+				__( 'Failed login attempt (%1$d of %2$d)', 'vigipress-security' ),
 				$attempts['count'],
 				$max_attempts
 			),
@@ -186,10 +186,10 @@ class Login_Protection {
 		);
 
 		// Store lockout in transient.
-		set_transient( 'vigil_lockout_' . md5( $ip ), $lockout_data, $lockout_duration );
+		set_transient( 'vigipress_lockout_' . md5( $ip ), $lockout_data, $lockout_duration );
 
 		// Clear the attempts counter since we've now locked them out.
-		delete_transient( 'vigil_login_attempts_' . md5( $ip ) );
+		delete_transient( 'vigipress_login_attempts_' . md5( $ip ) );
 
 		// Log the lockout.
 		$this->log_event(
@@ -199,7 +199,7 @@ class Login_Protection {
 			$ip,
 			sprintf(
 				/* translators: 1: attempt count, 2: lockout duration in minutes */
-				__( 'IP locked out after %1$d failed attempts. Lockout duration: %2$d minutes.', 'vigil-security' ),
+				__( 'IP locked out after %1$d failed attempts. Lockout duration: %2$d minutes.', 'vigipress-security' ),
 				$attempts['count'],
 				$lockout_duration / 60
 			),
@@ -221,7 +221,7 @@ class Login_Protection {
 		$ip = $this->get_user_ip();
 
 		// Clear attempts counter.
-		delete_transient( 'vigil_login_attempts_' . md5( $ip ) );
+		delete_transient( 'vigipress_login_attempts_' . md5( $ip ) );
 
 		// Log successful login.
 		$this->log_event(
@@ -229,7 +229,7 @@ class Login_Protection {
 			$user->ID,
 			$user_login,
 			$ip,
-			__( 'User logged in successfully', 'vigil-security' ),
+			__( 'User logged in successfully', 'vigipress-security' ),
 			'info'
 		);
 	}
@@ -245,14 +245,14 @@ class Login_Protection {
 		$ip = $this->get_user_ip();
 
 		// Check if IP is locked out.
-		$lockout_data = get_transient( 'vigil_lockout_' . md5( $ip ) );
+		$lockout_data = get_transient( 'vigipress_lockout_' . md5( $ip ) );
 
 		if ( false !== $lockout_data ) {
 			$remaining_time = $lockout_data['unlock_time'] - time();
 
 			return sprintf(
 				/* translators: %s: remaining lockout time in minutes */
-				__( '<strong>Security Alert:</strong> This IP address has been temporarily blocked due to too many failed login attempts. Please try again in %s minutes.', 'vigil-security' ),
+				__( '<strong>Security Alert:</strong> This IP address has been temporarily blocked due to too many failed login attempts. Please try again in %s minutes.', 'vigipress-security' ),
 				ceil( $remaining_time / 60 )
 			);
 		}
@@ -274,7 +274,7 @@ class Login_Protection {
 		// Email subject.
 		$subject = sprintf(
 			/* translators: %s: site name */
-			__( '[%s] Security Alert: IP Address Locked Out', 'vigil-security' ),
+			__( '[%s] Security Alert: IP Address Locked Out', 'vigipress-security' ),
 			get_bloginfo( 'name' )
 		);
 
@@ -282,7 +282,7 @@ class Login_Protection {
 		$message = sprintf(
 			/* translators: 1: IP address, 2: username, 3: attempt count, 4: lockout duration */
 			__(
-				"Security Alert from Vigil Security
+				"Security Alert from VigiPress Security
 
 An IP address has been locked out due to too many failed login attempts.
 
@@ -292,11 +292,11 @@ Details:
 - Failed Attempts: %3\$d
 - Lockout Duration: %4\$d minutes
 
-This is an automated message from Vigil Security plugin.
+This is an automated message from VigiPress Security plugin.
 If you did not attempt to log in, your site may be under attack.
 
 To view all security events, visit your WordPress admin dashboard.",
-				'vigil-security'
+				'vigipress-security'
 			),
 			$ip,
 			$attempts['attempted_user'],
@@ -359,7 +359,7 @@ To view all security events, visit your WordPress admin dashboard.",
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->insert(
@@ -393,7 +393,7 @@ To view all security events, visit your WordPress admin dashboard.",
 		$results = $wpdb->get_results(
 			"SELECT option_name, option_value 
 			FROM {$wpdb->options} 
-			WHERE option_name LIKE '_transient_vigil_lockout_%'",
+			WHERE option_name LIKE '_transient_vigipress_lockout_%'",
 			ARRAY_A
 		);
 
@@ -416,7 +416,7 @@ To view all security events, visit your WordPress admin dashboard.",
 	 * @return bool Success status.
 	 */
 	public function unlock_ip( $ip ) {
-		$deleted = delete_transient( 'vigil_lockout_' . md5( $ip ) );
+		$deleted = delete_transient( 'vigipress_lockout_' . md5( $ip ) );
 
 		if ( $deleted ) {
 			$this->log_event(
@@ -426,7 +426,7 @@ To view all security events, visit your WordPress admin dashboard.",
 				$this->get_user_ip(),
 				sprintf(
 					/* translators: %s: IP address */
-					__( 'Manually unlocked IP: %s', 'vigil-security' ),
+					__( 'Manually unlocked IP: %s', 'vigipress-security' ),
 					$ip
 				),
 				'info'

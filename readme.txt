@@ -1,4 +1,4 @@
-=== Vigil Security ===
+=== VigiPress Security ===
 Contributors: kashifahmedkhan
 Tags: security, firewall, brute force, login protection, hardening
 Requires at least: 5.8
@@ -12,7 +12,7 @@ Simple one-click WordPress security. Protect your site in 30 seconds.
 
 == Description ==
 
-Vigil Security provides essential WordPress protection without complexity. One-click hardening, brute force protection, and file integrity monitoring - all with zero configuration required.
+VigiPress Security provides essential WordPress protection without complexity. One-click hardening, brute force protection, and file integrity monitoring - all with zero configuration required.
 
 **Key Features:**
 
@@ -33,9 +33,9 @@ Vigil Security provides essential WordPress protection without complexity. One-c
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/vigil-security/`
+1. Upload the plugin files to `/wp-content/plugins/vigipress-security/`
 2. Activate the plugin through the 'Plugins' screen
-3. Go to Vigil Security → Dashboard
+3. Go to VigiPress Security → Dashboard
 4. Click "Fix All Issues (One Click)"
 5. Done! Your site is now protected.
 
@@ -43,11 +43,11 @@ Vigil Security provides essential WordPress protection without complexity. One-c
 
 = Will this slow down my site? =
 
-No. Vigil adds less than 10ms to page load time. Most security plugins add 200ms+.
+No. VigiPress adds less than 10ms to page load time. Most security plugins add 200ms+.
 
 = Do I need to configure anything? =
 
-Not if you don't want to. Click "Fix All Issues" and Vigil applies optimal security settings automatically.
+Not if you don't want to. Click "Fix All Issues" and VigiPress applies optimal security settings automatically.
 
 = What happens if I get locked out? =
 
@@ -55,15 +55,15 @@ Lockouts expire automatically (default: 15 minutes). You can also disable the pl
 
 = Does this work with WooCommerce? =
 
-Yes. Vigil is compatible with all major plugins including WooCommerce, Contact Form 7, and Yoast SEO.
+Yes. VigiPress is compatible with all major plugins including WooCommerce, Contact Form 7, and Yoast SEO.
 
 = Can I see what's being blocked? =
 
-Yes. Go to Vigil Security → Activity Log to see all security events, failed logins, and blocked IPs.
+Yes. Go to VigiPress Security → Activity Log to see all security events, failed logins, and blocked IPs.
 
 = Will this conflict with other security plugins? =
 
-It's not recommended to run multiple security plugins. Choose one and stick with it. Vigil is designed to be your only security plugin.
+It's not recommended to run multiple security plugins. Choose one and stick with it. VigiPress is designed to be your only security plugin.
 
 == Screenshots ==
 

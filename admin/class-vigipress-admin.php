@@ -5,12 +5,12 @@
  * Defines the plugin name, version, and hooks for admin menu,
  * settings, and AJAX handlers.
  *
- * @package    Vigil_Security
- * @subpackage Vigil_Security/admin
+ * @package    VigiPress_Security
+ * @subpackage VigiPress_Security/admin
  * @since      1.0.0
  */
 
-namespace Vigil_Security\Admin;
+namespace VigiPress_Security\Admin;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Defines the plugin name, version, and hooks for admin menu and settings.
  */
-class Vigil_Admin {
+class VigiPress_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -61,18 +61,18 @@ class Vigil_Admin {
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-		$this->settings    = get_option( 'vigil_security_settings', array() );
+		$this->settings    = get_option( 'vigipress_security_settings', array() );
 		
 		// Add AJAX handlers.
-		add_action( 'wp_ajax_vigil_fix_all_issues', array( $this, 'ajax_fix_all_issues' ) );
-		add_action( 'wp_ajax_vigil_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
-		add_action( 'wp_ajax_vigil_unlock_ip', array( $this, 'ajax_unlock_ip' ) ); 
+		add_action( 'wp_ajax_vigipress_fix_all_issues', array( $this, 'ajax_fix_all_issues' ) );
+		add_action( 'wp_ajax_vigipress_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
+		add_action( 'wp_ajax_vigipress_unlock_ip', array( $this, 'ajax_unlock_ip' ) ); 
 
-		add_action( 'wp_ajax_vigil_run_file_check', array( $this, 'ajax_run_file_check' ) );
-		add_action( 'wp_ajax_vigil_reset_plugin', array( $this, 'ajax_reset_plugin' ) );
-		add_action( 'wp_ajax_vigil_clear_logs', array( $this, 'ajax_clear_logs' ) );
+		add_action( 'wp_ajax_vigipress_run_file_check', array( $this, 'ajax_run_file_check' ) );
+		add_action( 'wp_ajax_vigipress_reset_plugin', array( $this, 'ajax_reset_plugin' ) );
+		add_action( 'wp_ajax_vigipress_clear_logs', array( $this, 'ajax_clear_logs' ) );
 
-		add_action( 'wp_ajax_vigil_run_file_check', array( $this, 'ajax_run_file_check' ) );  
+		add_action( 'wp_ajax_vigipress_run_file_check', array( $this, 'ajax_run_file_check' ) );  
 
 	}
 
@@ -83,10 +83,10 @@ class Vigil_Admin {
 	 */
 	public function add_admin_menu() {
 		add_menu_page(
-			__( 'Vigil Security', 'vigil-security' ),           // Page title.
-			__( 'Vigil Security', 'vigil-security' ),           // Menu title.
+			__( 'VigiPress Security', 'vigipress-security' ),           // Page title.
+			__( 'VigiPress Security', 'vigipress-security' ),           // Menu title.
 			'manage_options',                                    // Capability.
-			'vigil-security',                                    // Menu slug.
+			'vigipress-security',                                    // Menu slug.
 			array( $this, 'display_dashboard_page' ),           // Callback function.
 			'dashicons-shield',                                  // Icon.
 			80                                                   // Position (below Settings).
@@ -94,29 +94,29 @@ class Vigil_Admin {
 
 		// Add submenu pages.
 		add_submenu_page(
-			'vigil-security',
-			__( 'Dashboard', 'vigil-security' ),
-			__( 'Dashboard', 'vigil-security' ),
+			'vigipress-security',
+			__( 'Dashboard', 'vigipress-security' ),
+			__( 'Dashboard', 'vigipress-security' ),
 			'manage_options',
-			'vigil-security',
+			'vigipress-security',
 			array( $this, 'display_dashboard_page' )
 		);
 
 		add_submenu_page(
-			'vigil-security',
-			__( 'Settings', 'vigil-security' ),
-			__( 'Settings', 'vigil-security' ),
+			'vigipress-security',
+			__( 'Settings', 'vigipress-security' ),
+			__( 'Settings', 'vigipress-security' ),
 			'manage_options',
-			'vigil-security-settings',
+			'vigipress-security-settings',
 			array( $this, 'display_settings_page' )
 		);
 
 		add_submenu_page(
-			'vigil-security',
-			__( 'Activity Log', 'vigil-security' ),
-			__( 'Activity Log', 'vigil-security' ),
+			'vigipress-security',
+			__( 'Activity Log', 'vigipress-security' ),
+			__( 'Activity Log', 'vigipress-security' ),
 			'manage_options',
-			'vigil-security-logs',
+			'vigipress-security-logs',
 			array( $this, 'display_logs_page' )
 		);
 	}
@@ -129,13 +129,13 @@ class Vigil_Admin {
 	public function enqueue_styles() {
 		// Only load on our plugin pages.
 		$screen = get_current_screen();
-		if ( ! $screen || strpos( $screen->id, 'vigil-security' ) === false ) {
+		if ( ! $screen || strpos( $screen->id, 'vigipress-security' ) === false ) {
 			return;
 		}
 
 		wp_enqueue_style(
 			$this->plugin_name,
-			VIGIL_SECURITY_URL . 'admin/css/vigil-admin.css',
+			VIGIL_SECURITY_URL . 'admin/css/vigipress-admin.css',
 			array(),
 			$this->version,
 			'all'
@@ -150,13 +150,13 @@ class Vigil_Admin {
 	public function enqueue_scripts() {
 		// Only load on our plugin pages.
 		$screen = get_current_screen();
-		if ( ! $screen || strpos( $screen->id, 'vigil-security' ) === false ) {
+		if ( ! $screen || strpos( $screen->id, 'vigipress-security' ) === false ) {
 			return;
 		}
 
 		wp_enqueue_script(
 			$this->plugin_name,
-			VIGIL_SECURITY_URL . 'admin/js/vigil-admin.js',
+			VIGIL_SECURITY_URL . 'admin/js/vigipress-admin.js',
 			array( 'jquery' ),
 			$this->version,
 			true
@@ -165,10 +165,10 @@ class Vigil_Admin {
 		// Pass data to JavaScript.
 		wp_localize_script(
 			$this->plugin_name,
-			'vigilSecurity',
+			'vigipressSecurity',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( 'vigil_security_nonce' ),
+				'nonce'   => wp_create_nonce( 'vigipress_security_nonce' ),
 			)
 		);
 	}
@@ -181,11 +181,11 @@ class Vigil_Admin {
 	public function display_dashboard_page() {
 		// Check user capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'vigil-security' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'vigipress-security' ) );
 		}
 
 		// Refresh settings from database to ensure we have latest values
-		$this->settings = get_option( 'vigil_security_settings', array() );
+		$this->settings = get_option( 'vigipress_security_settings', array() );
 
 		// Calculate current health score.
 		$health_score = $this->calculate_health_score();
@@ -208,33 +208,33 @@ class Vigil_Admin {
 	public function display_settings_page() {
 		// Check user capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'vigil-security' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'vigipress-security' ) );
 		}
 
 		// Handle form submission.
-		if ( isset( $_POST['vigil_security_settings_nonce'] ) ) {
+		if ( isset( $_POST['vigipress_security_settings_nonce'] ) ) {
 			// Verify nonce before processing
-			if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['vigil_security_settings_nonce'] ) ), 'vigil_security_save_settings' ) ) {
+			if ( wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['vigipress_security_settings_nonce'] ) ), 'vigipress_security_save_settings' ) ) {
 				$this->save_settings();
 			}
 		}
 
 		// Refresh settings from database to ensure we have latest values.
-		$this->settings = get_option( 'vigil_security_settings', array() );
+		$this->settings = get_option( 'vigipress_security_settings', array() );
 
 		// Add helpful notice about security headers (dismissible).
 		$user_id      = get_current_user_id();
-		$is_dismissed = get_user_meta( $user_id, 'vigil_dismissed_headers_notice', true );
+		$is_dismissed = get_user_meta( $user_id, 'vigipress_dismissed_headers_notice', true );
 		
 		// Only show if headers enabled AND not dismissed.
 		$should_show = ! empty( $this->settings['enable_security_headers'] ) && ! $is_dismissed;
 		
 		if ( $should_show ) {
 			?>
-			<div class="notice notice-info is-dismissible vigil-dismissible-notice" data-notice-id="headers">
+			<div class="notice notice-info is-dismissible vigipress-dismissible-notice" data-notice-id="headers">
 				<p>
-					<strong><?php esc_html_e( 'Security Headers Active!', 'vigil-security' ); ?></strong>
-					<?php esc_html_e( 'Security headers are being sent on all frontend pages. To verify, open your homepage (not admin) and check browser DevTools → Network → Response Headers.', 'vigil-security' ); ?>
+					<strong><?php esc_html_e( 'Security Headers Active!', 'vigipress-security' ); ?></strong>
+					<?php esc_html_e( 'Security headers are being sent on all frontend pages. To verify, open your homepage (not admin) and check browser DevTools → Network → Response Headers.', 'vigipress-security' ); ?>
 				</p>
 			</div>
 			<?php
@@ -252,7 +252,7 @@ class Vigil_Admin {
 	public function display_logs_page() {
 		// Check user capabilities.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'vigil-security' ) );
+			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'vigipress-security' ) );
 		}
 
 		// Get logs from database.
@@ -273,7 +273,7 @@ class Vigil_Admin {
 		$checks = 10; // Total number of checks.
 
 		// Refresh settings to get latest values
-		$this->settings = get_option( 'vigil_security_settings', array() );
+		$this->settings = get_option( 'vigipress_security_settings', array() );
 
 		// Check 1: XML-RPC disabled (10 points).
 		if ( ! empty( $this->settings['disable_xmlrpc'] ) ) {
@@ -331,7 +331,7 @@ class Vigil_Admin {
 		// Update stored score.
 		$this->settings['health_score']            = $score;
 		$this->settings['health_score_last_check'] = current_time( 'timestamp' );
-		update_option( 'vigil_security_settings', $this->settings );
+		update_option( 'vigipress_security_settings', $this->settings );
 
 		return $score;
 	}
@@ -348,31 +348,31 @@ class Vigil_Admin {
 			return array(
 				'grade'  => 'A',
 				'color'  => '#10b981',
-				'status' => __( 'Excellent', 'vigil-security' ),
+				'status' => __( 'Excellent', 'vigipress-security' ),
 			);
 		} elseif ( $score >= 80 ) {
 			return array(
 				'grade'  => 'B',
 				'color'  => '#3b82f6',
-				'status' => __( 'Good', 'vigil-security' ),
+				'status' => __( 'Good', 'vigipress-security' ),
 			);
 		} elseif ( $score >= 70 ) {
 			return array(
 				'grade'  => 'C',
 				'color'  => '#f59e0b',
-				'status' => __( 'Fair', 'vigil-security' ),
+				'status' => __( 'Fair', 'vigipress-security' ),
 			);
 		} elseif ( $score >= 60 ) {
 			return array(
 				'grade'  => 'D',
 				'color'  => '#ef4444',
-				'status' => __( 'Poor', 'vigil-security' ),
+				'status' => __( 'Poor', 'vigipress-security' ),
 			);
 		} else {
 			return array(
 				'grade'  => 'F',
 				'color'  => '#dc2626',
-				'status' => __( 'Critical', 'vigil-security' ),
+				'status' => __( 'Critical', 'vigipress-security' ),
 			);
 		}
 	}
@@ -389,8 +389,8 @@ class Vigil_Admin {
 		// Check XML-RPC.
 		if ( empty( $this->settings['disable_xmlrpc'] ) ) {
 			$issues[] = array(
-				'title'       => __( 'XML-RPC is enabled', 'vigil-security' ),
-				'description' => __( 'This can be exploited for brute force attacks', 'vigil-security' ),
+				'title'       => __( 'XML-RPC is enabled', 'vigipress-security' ),
+				'description' => __( 'This can be exploited for brute force attacks', 'vigipress-security' ),
 				'severity'    => 'warning',
 			);
 		}
@@ -398,8 +398,8 @@ class Vigil_Admin {
 		// Check file editing.
 		if ( empty( $this->settings['disable_file_edit'] ) && ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 			$issues[] = array(
-				'title'       => __( 'File editing is enabled', 'vigil-security' ),
-				'description' => __( 'Hackers can modify your theme/plugin files', 'vigil-security' ),
+				'title'       => __( 'File editing is enabled', 'vigipress-security' ),
+				'description' => __( 'Hackers can modify your theme/plugin files', 'vigipress-security' ),
 				'severity'    => 'critical',
 			);
 		}
@@ -407,8 +407,8 @@ class Vigil_Admin {
 		// Check login protection.
 		if ( empty( $this->settings['login_protection_enabled'] ) ) {
 			$issues[] = array(
-				'title'       => __( 'Login protection is disabled', 'vigil-security' ),
-				'description' => __( 'Your site is vulnerable to brute force attacks', 'vigil-security' ),
+				'title'       => __( 'Login protection is disabled', 'vigipress-security' ),
+				'description' => __( 'Your site is vulnerable to brute force attacks', 'vigipress-security' ),
 				'severity'    => 'critical',
 			);
 		}
@@ -416,8 +416,8 @@ class Vigil_Admin {
 		// Check WP version.
 		if ( empty( $this->settings['hide_wp_version'] ) ) {
 			$issues[] = array(
-				'title'       => __( 'WordPress version is visible', 'vigil-security' ),
-				'description' => __( 'Attackers can target known vulnerabilities', 'vigil-security' ),
+				'title'       => __( 'WordPress version is visible', 'vigipress-security' ),
+				'description' => __( 'Attackers can target known vulnerabilities', 'vigipress-security' ),
 				'severity'    => 'info',
 			);
 		}
@@ -425,8 +425,8 @@ class Vigil_Admin {
 		// Check SSL.
 		if ( ! is_ssl() && ! defined( 'FORCE_SSL_ADMIN' ) ) {
 			$issues[] = array(
-				'title'       => __( 'SSL is not enforced on admin', 'vigil-security' ),
-				'description' => __( 'Your login credentials can be intercepted', 'vigil-security' ),
+				'title'       => __( 'SSL is not enforced on admin', 'vigipress-security' ),
+				'description' => __( 'Your login credentials can be intercepted', 'vigipress-security' ),
 				'severity'    => 'warning',
 			);
 		}
@@ -435,8 +435,8 @@ class Vigil_Admin {
 		global $wpdb;
 		if ( $wpdb->prefix === 'wp_' ) {
 			$issues[] = array(
-				'title'       => __( 'Database uses default prefix', 'vigil-security' ),
-				'description' => __( 'Makes SQL injection attacks easier', 'vigil-security' ),
+				'title'       => __( 'Database uses default prefix', 'vigipress-security' ),
+				'description' => __( 'Makes SQL injection attacks easier', 'vigipress-security' ),
 				'severity'    => 'info',
 			);
 		}
@@ -453,7 +453,7 @@ class Vigil_Admin {
 	 */
 	private function get_activity_logs( $limit = 100 ) {
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$logs = $wpdb->get_results(
@@ -473,12 +473,12 @@ class Vigil_Admin {
 	 */
 	private function save_settings() {
 		// Verify nonce.
-		if ( ! isset( $_POST['vigil_security_settings_nonce'] ) ||
-			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['vigil_security_settings_nonce'] ) ), 'vigil_security_save_settings' ) ) {
+		if ( ! isset( $_POST['vigipress_security_settings_nonce'] ) ||
+			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['vigipress_security_settings_nonce'] ) ), 'vigipress_security_save_settings' ) ) {
 			add_settings_error(
-				'vigil_security_messages',
-				'vigil_security_nonce_error',
-				__( 'Security check failed. Please try again.', 'vigil-security' ),
+				'vigipress_security_messages',
+				'vigipress_security_nonce_error',
+				__( 'Security check failed. Please try again.', 'vigipress-security' ),
 				'error'
 			);
 			return;
@@ -491,15 +491,15 @@ class Vigil_Admin {
 
 		// Save data retention preference separately (not in main settings array)
 		if ( isset( $_POST['keep_data_on_uninstall'] ) ) {
-			update_option( 'vigil_security_keep_data_on_uninstall', 1 );
+			update_option( 'vigipress_security_keep_data_on_uninstall', 1 );
 		} else {
-			update_option( 'vigil_security_keep_data_on_uninstall', 0 );
+			update_option( 'vigipress_security_keep_data_on_uninstall', 0 );
 		}
 		
 
 
 		// Get current settings.
-		$settings = get_option( 'vigil_security_settings', array() );
+		$settings = get_option( 'vigipress_security_settings', array() );
 
 		// Update login protection settings.
 		$settings['login_protection_enabled'] = isset( $_POST['login_protection_enabled'] ) ? 1 : 0;
@@ -524,21 +524,21 @@ class Vigil_Admin {
 		$settings['file_integrity_email']   = isset( $_POST['file_integrity_email'] ) ? sanitize_email( wp_unslash( $_POST['file_integrity_email'] ) ) : get_option( 'admin_email' );
 
 		// Save settings.
-		update_option( 'vigil_security_settings', $settings );
+		update_option( 'vigipress_security_settings', $settings );
 
 		// Update the class property so changes show immediately.
 		$this->settings = $settings;
 
 		// Show success message.
 		add_settings_error(
-			'vigil_security_messages',
-			'vigil_security_settings_saved',
-			__( 'Settings saved successfully!', 'vigil-security' ),
+			'vigipress_security_messages',
+			'vigipress_security_settings_saved',
+			__( 'Settings saved successfully!', 'vigipress-security' ),
 			'success'
 		);
 
 		// Set a flag so we know to reload the settings after save.
-		set_transient( 'vigil_security_settings_saved', true, 5 );
+		set_transient( 'vigipress_security_settings_saved', true, 5 );
 	}
 
 	/**
@@ -548,15 +548,15 @@ class Vigil_Admin {
 	 */
 	public function ajax_fix_all_issues() {
 		// Verify nonce.
-		check_ajax_referer( 'vigil_security_nonce', 'nonce' );
+		check_ajax_referer( 'vigipress_security_nonce', 'nonce' );
 
 		// Check permissions.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigipress-security' ) ) );
 		}
 
 		// Get current settings and calculate old score FIRST
-		$this->settings = get_option( 'vigil_security_settings', array() );
+		$this->settings = get_option( 'vigipress_security_settings', array() );
 		$old_score      = $this->calculate_health_score(); // Calculate BEFORE making changes
 
 		// Now apply all safe hardening measures.
@@ -569,10 +569,10 @@ class Vigil_Admin {
 		$this->settings['activity_log_enabled']     = 1;
 
 		// Save settings.
-		update_option( 'vigil_security_settings', $this->settings );
+		update_option( 'vigipress_security_settings', $this->settings );
 
 		// IMPORTANT: Refresh settings from database before recalculating
-		$this->settings = get_option( 'vigil_security_settings', array() );
+		$this->settings = get_option( 'vigipress_security_settings', array() );
 		
 		// Recalculate health score with NEW settings.
 		$new_score = $this->calculate_health_score();
@@ -586,14 +586,14 @@ class Vigil_Admin {
 		// Return success response.
 		wp_send_json_success(
 			array(
-				'message'      => __( 'All security issues have been fixed!', 'vigil-security' ),
+				'message'      => __( 'All security issues have been fixed!', 'vigipress-security' ),
 				'old_score'    => $old_score,
 				'new_score'    => $new_score,
 				'grade'        => $health_data['grade'],
 				'status'       => $health_data['status'],
 				'color'        => $health_data['color'],
 				'issues_fixed' => 6,
-				'redirect_url' => admin_url( 'admin.php?page=vigil-security&fixed=1' ), // Optional: for fallback
+				'redirect_url' => admin_url( 'admin.php?page=vigipress-security&fixed=1' ), // Optional: for fallback
 			)
 		);
 	}
@@ -607,7 +607,7 @@ class Vigil_Admin {
 	 */
 	private function log_fix_all_event( $old_score, $new_score ) {
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 
 		$user = wp_get_current_user();
 
@@ -621,7 +621,7 @@ class Vigil_Admin {
 				'ip_address'  => $this->get_user_ip(),
 				'description' => sprintf(
 					/* translators: 1: old score, 2: new score */
-					__( 'Applied all security fixes. Health score improved from %1$d to %2$d.', 'vigil-security' ),
+					__( 'Applied all security fixes. Health score improved from %1$d to %2$d.', 'vigipress-security' ),
 					$old_score,
 					$new_score
 				),
@@ -671,26 +671,26 @@ class Vigil_Admin {
 	 */
 	public function ajax_dismiss_notice() {
 		// Verify nonce.
-		check_ajax_referer( 'vigil_security_nonce', 'nonce' );
+		check_ajax_referer( 'vigipress_security_nonce', 'nonce' );
 
 		// Check permissions.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigipress-security' ) ) );
 		}
 
 		// Get notice ID.
 		$notice_id = isset( $_POST['notice_id'] ) ? sanitize_text_field( wp_unslash( $_POST['notice_id'] ) ) : '';
 
 		if ( empty( $notice_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid notice ID', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid notice ID', 'vigipress-security' ) ) );
 		}
 
 		// Save dismissal in user meta.
-		$meta_key = 'vigil_dismissed_' . $notice_id . '_notice';
+		$meta_key = 'vigipress_dismissed_' . $notice_id . '_notice';
 		update_user_meta( get_current_user_id(), $meta_key, true );
 
 		wp_send_json_success( array( 
-			'message' => __( 'Notice dismissed', 'vigil-security' ),
+			'message' => __( 'Notice dismissed', 'vigipress-security' ),
 			'meta_key' => $meta_key,
 			'user_id' => get_current_user_id()
 		) );
@@ -704,9 +704,9 @@ class Vigil_Admin {
 	 */
 	public function handle_notice_dismissal() {
 		// Check if this is a notice dismissal request
-		if ( isset( $_GET['vigil_dismiss'] ) && isset( $_GET['vigil_nonce'] ) ) {
+		if ( isset( $_GET['vigipress_dismiss'] ) && isset( $_GET['vigipress_nonce'] ) ) {
 			// Verify nonce
-			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['vigil_nonce'] ) ), 'vigil_dismiss_notice' ) ) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['vigipress_nonce'] ) ), 'vigipress_dismiss_notice' ) ) {
 				return;
 			}
 
@@ -716,14 +716,14 @@ class Vigil_Admin {
 			}
 
 			// Get notice ID
-			$notice_id = sanitize_text_field( wp_unslash( $_GET['vigil_dismiss'] ) );
+			$notice_id = sanitize_text_field( wp_unslash( $_GET['vigipress_dismiss'] ) );
 
 			// Save dismissal
-			$meta_key = 'vigil_dismissed_' . $notice_id . '_notice';
+			$meta_key = 'vigipress_dismissed_' . $notice_id . '_notice';
 			update_user_meta( get_current_user_id(), $meta_key, true );
 
 			// Redirect to clean URL (remove parameters)
-			$redirect_url = remove_query_arg( array( 'vigil_dismiss', 'vigil_nonce' ) );
+			$redirect_url = remove_query_arg( array( 'vigipress_dismiss', 'vigipress_nonce' ) );
 			wp_safe_redirect( $redirect_url );
 			exit;
 		}
@@ -736,37 +736,37 @@ class Vigil_Admin {
 	 */
 	public function ajax_unlock_ip() {
 		// Verify nonce.
-		check_ajax_referer( 'vigil_security_nonce', 'nonce' );
+		check_ajax_referer( 'vigipress_security_nonce', 'nonce' );
 
 		// Check permissions.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigipress-security' ) ) );
 		}
 
 		// Get IP address.
 		$ip = isset( $_POST['ip'] ) ? sanitize_text_field( wp_unslash( $_POST['ip'] ) ) : '';
 
 		if ( empty( $ip ) || ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid IP address', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid IP address', 'vigipress-security' ) ) );
 		}
 
 		// Unlock the IP.
-		if ( class_exists( '\Vigil_Security\Modules\Login_Protection' ) ) {
-			$login_protection = new \Vigil_Security\Modules\Login_Protection();
+		if ( class_exists( '\VigiPress_Security\Modules\Login_Protection' ) ) {
+			$login_protection = new \VigiPress_Security\Modules\Login_Protection();
 			$result           = $login_protection->unlock_ip( $ip );
 
 			if ( $result ) {
 				wp_send_json_success( array(
 					'message' => sprintf(
 						/* translators: %s: IP address */
-						__( 'IP address %s has been unlocked.', 'vigil-security' ),
+						__( 'IP address %s has been unlocked.', 'vigipress-security' ),
 						$ip
 					),
 				) );
 			}
 		}
 
-		wp_send_json_error( array( 'message' => __( 'Failed to unlock IP address', 'vigil-security' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Failed to unlock IP address', 'vigipress-security' ) ) );
 	}
 
 	/**
@@ -776,16 +776,16 @@ class Vigil_Admin {
 	 */
 	public function ajax_run_file_check() {
 		// Verify nonce.
-		check_ajax_referer( 'vigil_security_nonce', 'nonce' );
+		check_ajax_referer( 'vigipress_security_nonce', 'nonce' );
 
 		// Check permissions.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigipress-security' ) ) );
 		}
 
 		// Run file check.
-		if ( class_exists( '\Vigil_Security\Modules\File_Integrity' ) ) {
-			$file_integrity = new \Vigil_Security\Modules\File_Integrity();
+		if ( class_exists( '\VigiPress_Security\Modules\File_Integrity' ) ) {
+			$file_integrity = new \VigiPress_Security\Modules\File_Integrity();
 			$results        = $file_integrity->run_file_check();
 
 			if ( isset( $results['error'] ) ) {
@@ -793,14 +793,14 @@ class Vigil_Admin {
 			}
 
 			wp_send_json_success( array(
-				'message'    => __( 'File integrity scan completed!', 'vigil-security' ),
+				'message'    => __( 'File integrity scan completed!', 'vigipress-security' ),
 				'checked'    => $results['checked'],
 				'modified'   => count( $results['modified'] ),
 				'unexpected' => count( $results['unexpected'] ),
 			) );
 		}
 
-		wp_send_json_error( array( 'message' => __( 'File integrity module not available', 'vigil-security' ) ) );
+		wp_send_json_error( array( 'message' => __( 'File integrity module not available', 'vigipress-security' ) ) );
 	}
 
 
@@ -813,11 +813,11 @@ class Vigil_Admin {
 	 */
 	public function ajax_reset_plugin() {
 		// Verify nonce.
-		check_ajax_referer( 'vigil_security_nonce', 'nonce' );
+		check_ajax_referer( 'vigipress_security_nonce', 'nonce' );
 
 		// Check permissions.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigipress-security' ) ) );
 		}
 
 		// Get default settings from activator.
@@ -839,11 +839,11 @@ class Vigil_Admin {
 		);
 
 		// Reset settings.
-		update_option( 'vigil_security_settings', $default_settings );
+		update_option( 'vigipress_security_settings', $default_settings );
 
 		// Log the reset.
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 		$user       = wp_get_current_user();
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
@@ -854,7 +854,7 @@ class Vigil_Admin {
 				'user_id'     => $user->ID,
 				'username'    => $user->user_login,
 				'ip_address'  => $this->get_user_ip(),
-				'description' => __( 'Plugin settings reset to defaults', 'vigil-security' ),
+				'description' => __( 'Plugin settings reset to defaults', 'vigipress-security' ),
 				'severity'    => 'warning',
 				'created_at'  => current_time( 'mysql' ),
 			),
@@ -862,7 +862,7 @@ class Vigil_Admin {
 		);
 
 		wp_send_json_success( array(
-			'message' => __( 'Plugin settings have been reset to defaults.', 'vigil-security' ),
+			'message' => __( 'Plugin settings have been reset to defaults.', 'vigipress-security' ),
 		) );
 	}
 
@@ -876,15 +876,15 @@ class Vigil_Admin {
 	 */
 	public function ajax_clear_logs() {
 		// Verify nonce.
-		check_ajax_referer( 'vigil_security_nonce', 'nonce' );
+		check_ajax_referer( 'vigipress_security_nonce', 'nonce' );
 
 		// Check permissions.
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigil-security' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'vigipress-security' ) ) );
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 
 		// Get count before deletion.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -907,7 +907,7 @@ class Vigil_Admin {
 				'ip_address'  => $this->get_user_ip(),
 				'description' => sprintf(
 					/* translators: %d: number of deleted logs */
-					__( 'Cleared %d security log entries', 'vigil-security' ),
+					__( 'Cleared %d security log entries', 'vigipress-security' ),
 					$count_before
 				),
 				'severity'    => 'warning',
@@ -919,7 +919,7 @@ class Vigil_Admin {
 		wp_send_json_success( array(
 			'message'      => sprintf(
 				/* translators: %d: number of deleted logs */
-				__( '%d security log entries have been cleared.', 'vigil-security' ),
+				__( '%d security log entries have been cleared.', 'vigipress-security' ),
 				$count_before
 			),
 			'logs_deleted' => $count_before,

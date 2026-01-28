@@ -4,19 +4,19 @@
  *
  * Handles complete plugin data removal on uninstall.
  *
- * @package    Vigil_Security
- * @subpackage Vigil_Security/includes
+ * @package    VigiPress_Security
+ * @subpackage VigiPress_Security/includes
  * @since      1.0.0
  */
 
-namespace Vigil_Security;
+namespace VigiPress_Security;
 
 /**
  * Uninstaller class.
  *
  * Defines all code necessary to run during the plugin's uninstallation.
  */
-class Vigil_Uninstaller {
+class VigiPress_Uninstaller {
 
 	/**
 	 * Run the uninstallation process.
@@ -25,7 +25,7 @@ class Vigil_Uninstaller {
 	 */
 	public static function uninstall() {
 		// Check if user wants to keep data.
-		$keep_data = get_option( 'vigil_security_keep_data_on_uninstall', false );
+		$keep_data = get_option( 'vigipress_security_keep_data_on_uninstall', false );
 
 		if ( $keep_data ) {
 			// Only remove plugin options, keep security data.
@@ -48,9 +48,9 @@ class Vigil_Uninstaller {
 	 * @since 1.0.0
 	 */
 	private static function remove_plugin_options() {
-		delete_option( 'vigil_security_settings' );
-		delete_option( 'vigil_security_db_version' );
-		delete_option( 'vigil_security_keep_data_on_uninstall' );
+		delete_option( 'vigipress_security_settings' );
+		delete_option( 'vigipress_security_db_version' );
+		delete_option( 'vigipress_security_keep_data_on_uninstall' );
 	}
 
 	/**
@@ -61,10 +61,10 @@ class Vigil_Uninstaller {
 	private static function remove_all_options() {
 		global $wpdb;
 
-		// Get all Vigil options.
+		// Get all VigiPress options.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$options = $wpdb->get_col(
-			"SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'vigil_%'"
+			"SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'vigipress_%'"
 		);
 
 		// Delete each option.
@@ -81,24 +81,24 @@ class Vigil_Uninstaller {
 	private static function drop_database_tables() {
 		global $wpdb;
 
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 	}
 
 	/**
-	 * Remove all user meta related to Vigil Security.
+	 * Remove all user meta related to VigiPress Security.
 	 *
 	 * @since 1.0.0
 	 */
 	private static function remove_user_meta() {
 		global $wpdb;
 
-		// Delete all user meta with 'vigil_' prefix.
+		// Delete all user meta with 'vigipress_' prefix.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->query(
-			"DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'vigil_%'"
+			"DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE 'vigipress_%'"
 		);
 	}
 
@@ -114,8 +114,8 @@ class Vigil_Uninstaller {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->query(
 			"DELETE FROM {$wpdb->options} 
-			WHERE option_name LIKE '_transient_vigil_%' 
-			OR option_name LIKE '_transient_timeout_vigil_%'"
+			WHERE option_name LIKE '_transient_vigipress_%' 
+			OR option_name LIKE '_transient_timeout_vigipress_%'"
 		);
 	}
 
@@ -126,10 +126,10 @@ class Vigil_Uninstaller {
 	 */
 	private static function clear_scheduled_events() {
 		// Clear daily cleanup.
-		wp_clear_scheduled_hook( 'vigil_security_daily_cleanup' );
+		wp_clear_scheduled_hook( 'vigipress_security_daily_cleanup' );
 
 		// Clear weekly file check.
-		wp_clear_scheduled_hook( 'vigil_security_weekly_file_check' );
+		wp_clear_scheduled_hook( 'vigipress_security_weekly_file_check' );
 	}
 
 	/**
@@ -142,7 +142,7 @@ class Vigil_Uninstaller {
 		global $wpdb;
 
 		// Only log if table still exists.
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$table_exists = $wpdb->get_var(
@@ -168,7 +168,7 @@ class Vigil_Uninstaller {
 				'ip_address'  => self::get_user_ip(),
 				'description' => sprintf(
 					/* translators: %s: uninstall type */
-					__( 'Plugin uninstalled (%s cleanup)', 'vigil-security' ),
+					__( 'Plugin uninstalled (%s cleanup)', 'vigipress-security' ),
 					$type
 				),
 				'severity'    => 'info',
@@ -229,11 +229,11 @@ class Vigil_Uninstaller {
 		// Count options.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$stats['options'] = $wpdb->get_var(
-			"SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE 'vigil_%'"
+			"SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE 'vigipress_%'"
 		);
 
 		// Count logs.
-		$table_name = $wpdb->prefix . 'vigil_logs';
+		$table_name = $wpdb->prefix . 'vigipress_logs';
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$table_exists = $wpdb->get_var(
 			$wpdb->prepare(
@@ -250,15 +250,15 @@ class Vigil_Uninstaller {
 		// Count user meta.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$stats['user_meta'] = $wpdb->get_var(
-			"SELECT COUNT(*) FROM {$wpdb->usermeta} WHERE meta_key LIKE 'vigil_%'"
+			"SELECT COUNT(*) FROM {$wpdb->usermeta} WHERE meta_key LIKE 'vigipress_%'"
 		);
 
 		// Count transients.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$stats['transients'] = $wpdb->get_var(
 			"SELECT COUNT(*) FROM {$wpdb->options} 
-			WHERE option_name LIKE '_transient_vigil_%' 
-			OR option_name LIKE '_transient_timeout_vigil_%'"
+			WHERE option_name LIKE '_transient_vigipress_%' 
+			OR option_name LIKE '_transient_timeout_vigipress_%'"
 		);
 
 		return $stats;

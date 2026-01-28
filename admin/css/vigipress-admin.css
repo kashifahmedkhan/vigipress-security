@@ -1,17 +1,17 @@
 /**
- * Vigil Security Admin Styles
+ * VigiPress Security Admin Styles
  *
- * @package Vigil_Security
+ * @package VigiPress_Security
  * @since      1.0.0
  * 
  */
 
 /* === Global Styles === */
-.vigil-wrap {
+.vigipress-wrap {
 	margin: 20px 20px 0 0;
 }
 
-.vigil-page-title {
+.vigipress-page-title {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -22,7 +22,7 @@
 	line-height: 1.3;
 }
 
-.vigil-page-title .dashicons {
+.vigipress-page-title .dashicons {
 	font-size: 28px;
 	width: 28px;
 	height: 28px;
@@ -30,7 +30,7 @@
 }
 
 /* === Card Styles === */
-.vigil-card {
+.vigipress-card {
 	background: #fff;
 	border: 1px solid #c3c4c7;
 	border-radius: 4px;
@@ -38,40 +38,40 @@
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
-.vigil-card-header {
+.vigipress-card-header {
 	padding: 15px 20px;
 	border-bottom: 1px solid #c3c4c7;
 	background: #f6f7f7;
 }
 
-.vigil-card-header h2 {
+.vigipress-card-header h2 {
 	margin: 0;
 	font-size: 16px;
 	font-weight: 600;
 }
 
-.vigil-card-body {
+.vigipress-card-body {
 	padding: 20px;
 }
 
 /* === Dashboard Grid === */
-.vigil-dashboard {
+.vigipress-dashboard {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	gap: 20px;
 }
 
-.vigil-health-card {
+.vigipress-health-card {
 	grid-column: 1 / -1;
 }
 
 /* === Health Score === */
-.vigil-health-score {
+.vigipress-health-score {
 	text-align: center;
 	margin-bottom: 20px;
 }
 
-.vigil-score-circle {
+.vigipress-score-circle {
 	width: 150px;
 	height: 150px;
 	border: 8px solid;
@@ -83,25 +83,25 @@
 	margin-bottom: 15px;
 }
 
-.vigil-score-grade {
+.vigipress-score-grade {
 	font-size: 48px;
 	font-weight: bold;
 	line-height: 1;
 }
 
-.vigil-score-number {
+.vigipress-score-number {
 	font-size: 18px;
 	color: #50575e;
 	margin-top: 5px;
 }
 
-.vigil-score-status {
+.vigipress-score-status {
 	font-size: 20px;
 	font-weight: 600;
 }
 
 /* === Progress Bar === */
-.vigil-progress-bar {
+.vigipress-progress-bar {
 	width: 100%;
 	height: 30px;
 	background: #f0f0f1;
@@ -110,21 +110,21 @@
 	margin-bottom: 20px;
 }
 
-.vigil-progress-fill {
+.vigipress-progress-fill {
 	height: 100%;
 	transition: width 0.5s ease;
 	border-radius: 15px;
 }
 
 /* === Quick Action === */
-.vigil-quick-action {
+.vigipress-quick-action {
 	text-align: center;
 	padding: 20px;
 	background: #f0f6fc;
 	border-radius: 4px;
 }
 
-.vigil-fix-all-btn {
+.vigipress-fix-all-btn {
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
@@ -133,14 +133,14 @@
 	height: auto !important;
 }
 
-.vigil-fix-all-btn .dashicons {
+.vigipress-fix-all-btn .dashicons {
 	font-size: 20px;
 	width: 20px;
 	height: 20px;
 }
 
 /* === Success Message === */
-.vigil-success-message {
+.vigipress-success-message {
 	text-align: center;
 	padding: 20px;
 	background: #edf7ed;
@@ -153,7 +153,7 @@
 	gap: 10px;
 }
 
-.vigil-success-message .dashicons {
+.vigipress-success-message .dashicons {
 	color: #10b981;
 	font-size: 24px;
 	width: 24px;
@@ -161,13 +161,13 @@
 }
 
 /* === Issues List === */
-.vigil-issues-list {
+.vigipress-issues-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.vigil-issue {
+.vigipress-issue {
 	display: flex;
 	gap: 15px;
 	padding: 15px;
@@ -177,68 +177,68 @@
 	border-left: 4px solid;
 }
 
-.vigil-issue-critical {
+.vigipress-issue-critical {
 	border-left-color: #dc2626;
 }
 
-.vigil-issue-warning {
+.vigipress-issue-warning {
 	border-left-color: #f59e0b;
 }
 
-.vigil-issue-info {
+.vigipress-issue-info {
 	border-left-color: #3b82f6;
 }
 
-.vigil-issue-icon {
+.vigipress-issue-icon {
 	flex-shrink: 0;
 }
 
-.vigil-issue-icon .dashicons {
+.vigipress-issue-icon .dashicons {
 	font-size: 24px;
 	width: 24px;
 	height: 24px;
 }
 
-.vigil-issue-content strong {
+.vigipress-issue-content strong {
 	display: block;
 	margin-bottom: 5px;
 	color: #1d2327;
 }
 
-.vigil-issue-content p {
+.vigipress-issue-content p {
 	margin: 0;
 	color: #50575e;
 	font-size: 13px;
 }
 
 /* === No Issues === */
-.vigil-no-issues {
+.vigipress-no-issues {
 	text-align: center;
 	padding: 40px 20px;
 	color: #10b981;
 }
 
-.vigil-no-issues .dashicons {
+.vigipress-no-issues .dashicons {
 	font-size: 48px;
 	width: 48px;
 	height: 48px;
 	margin-bottom: 10px;
 }
 
-.vigil-no-issues p {
+.vigipress-no-issues p {
 	font-size: 16px;
 	margin: 0;
 }
 
 /* === Stats Grid === */
-.vigil-stats-grid {
+.vigipress-stats-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	gap: 20px;
 	grid-column: 1 / -1;
 }
 
-.vigil-stat-card {
+.vigipress-stat-card {
 	background: #fff;
 	border: 1px solid #c3c4c7;
 	border-radius: 4px;
@@ -248,7 +248,7 @@
 	align-items: center;
 }
 
-.vigil-stat-icon {
+.vigipress-stat-icon {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
@@ -259,48 +259,48 @@
 	flex-shrink: 0;
 }
 
-.vigil-stat-icon .dashicons {
+.vigipress-stat-icon .dashicons {
 	color: #2271b1;
 	font-size: 28px;
 	width: 28px;
 	height: 28px;
 }
 
-.vigil-stat-value {
+.vigipress-stat-value {
 	font-size: 24px;
 	font-weight: bold;
 	color: #1d2327;
 	line-height: 1;
 }
 
-.vigil-stat-label {
+.vigipress-stat-label {
 	font-size: 13px;
 	color: #50575e;
 	margin-top: 5px;
 }
 
 /* === Settings Grid === */
-.vigil-settings-grid {
+.vigipress-settings-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 	gap: 20px;
 }
 
 /* === Toggle Switch === */
-.vigil-toggle {
+.vigipress-toggle {
 	position: relative;
 	display: inline-block;
 	width: 50px;
 	height: 24px;
 }
 
-.vigil-toggle input {
+.vigipress-toggle input {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
 
-.vigil-toggle-slider {
+.vigipress-toggle-slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;
@@ -312,7 +312,7 @@
 	border-radius: 24px;
 }
 
-.vigil-toggle-slider:before {
+.vigipress-toggle-slider:before {
 	position: absolute;
 	content: "";
 	height: 18px;
@@ -324,16 +324,16 @@
 	border-radius: 50%;
 }
 
-.vigil-toggle input:checked + .vigil-toggle-slider {
+.vigipress-toggle input:checked + .vigipress-toggle-slider {
 	background-color: #2271b1;
 }
 
-.vigil-toggle input:checked + .vigil-toggle-slider:before {
+.vigipress-toggle input:checked + .vigipress-toggle-slider:before {
 	transform: translateX(26px);
 }
 
 /* === Badge === */
-.vigil-badge {
+.vigipress-badge {
 	display: inline-block;
 	padding: 4px 10px;
 	border-radius: 12px;
@@ -344,13 +344,13 @@
 }
 
 /* === Activity Log === */
-.vigil-no-logs {
+.vigipress-no-logs {
 	text-align: center;
 	padding: 40px 20px;
 	color: #50575e;
 }
 
-.vigil-no-logs .dashicons {
+.vigipress-no-logs .dashicons {
 	font-size: 48px;
 	width: 48px;
 	height: 48px;
@@ -360,31 +360,31 @@
 
 /* === Responsive === */
 @media (max-width: 782px) {
-	.vigil-dashboard,
-	.vigil-settings-grid {
+	.vigipress-dashboard,
+	.vigipress-settings-grid {
 		grid-template-columns: 1fr;
 	}
 
-	.vigil-stats-grid {
+	.vigipress-stats-grid {
 		grid-template-columns: 1fr;
 	}
 
-	.vigil-score-circle {
+	.vigipress-score-circle {
 		width: 120px;
 		height: 120px;
 	}
 
-	.vigil-score-grade {
+	.vigipress-score-grade {
 		font-size: 40px;
 	}
 }
 
 /* === Locked IPs Widget === */
-.vigil-locked-ips-card table {
+.vigipress-locked-ips-card table {
 	margin-top: 0;
 }
 
-.vigil-unlock-ip-btn {
+.vigipress-unlock-ip-btn {
 	font-size: 12px;
 	padding: 4px 12px;
 	height: auto;
@@ -392,18 +392,18 @@
 }
 
 /* === File Integrity Widget === */
-.vigil-file-check-results {
+.vigipress-file-check-results {
 	padding: 10px 0;
 }
 
-.vigil-file-stats {
+.vigipress-file-stats {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 20px;
 	margin: 20px 0;
 }
 
-.vigil-file-stat {
+.vigipress-file-stat {
 	text-align: center;
 	padding: 20px;
 	background: #f9fafb;
@@ -411,17 +411,17 @@
 	border: 2px solid #e5e7eb;
 }
 
-.vigil-file-stat-warning {
+.vigipress-file-stat-warning {
 	background: #fef3c7;
 	border-color: #f59e0b;
 }
 
-.vigil-file-stat-critical {
+.vigipress-file-stat-critical {
 	background: #fee2e2;
 	border-color: #dc2626;
 }
 
-.vigil-file-stat-number {
+.vigipress-file-stat-number {
 	display: block;
 	font-size: 36px;
 	font-weight: bold;
@@ -429,13 +429,13 @@
 	line-height: 1;
 	margin-bottom: 8px;
 }
-.vigil-file-stat-warning .vigil-file-stat-number {
+.vigipress-file-stat-warning .vigipress-file-stat-number {
 	color: #f59e0b;
 }
-.vigil-file-stat-critical .vigil-file-stat-number {
+.vigipress-file-stat-critical .vigipress-file-stat-number {
 	color: #dc2626;
 }
-.vigil-file-stat-label {
+.vigipress-file-stat-label {
 	display: block;
 	font-size: 13px;
 	color: #6b7280;
@@ -443,7 +443,7 @@
 	font-weight: 600;
 	letter-spacing: 0.5px;
 }
-.vigil-file-alert {
+.vigipress-file-alert {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -454,13 +454,13 @@
 	margin-top: 20px;
 }
 
-.vigil-file-alert .dashicons {
+.vigipress-file-alert .dashicons {
 	flex-shrink: 0;
 	font-size: 24px;
 	width: 24px;
 	height: 24px;
 }
-.vigil-file-success {
+.vigipress-file-success {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -470,13 +470,13 @@
 	border-radius: 4px;
 	margin-top: 20px;
 }
-.vigil-file-success .dashicons {
+.vigipress-file-success .dashicons {
 	flex-shrink: 0;
 	font-size: 24px;
 	width: 24px;
 	height: 24px;
 }
-.vigil-run-file-check-btn .dashicons {
+.vigipress-run-file-check-btn .dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
@@ -485,7 +485,7 @@
 }
 /* === Responsive === */
 @media (max-width: 782px) {
-	.vigil-file-stats {
+	.vigipress-file-stats {
 		grid-template-columns: 1fr;
 	}
 }

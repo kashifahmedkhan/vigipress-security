@@ -1,7 +1,7 @@
 /**
- * Vigil Security Admin JavaScript
+ * VigiPress Security Admin JavaScript
  *
- * @package Vigil_Security
+ * @package VigiPress_Security
  * @since      1.0.0
  * 
  */
@@ -17,17 +17,17 @@
 		/**
 		 * Handle "Fix All Issues" button click.
 		 */
-		$('.vigil-fix-all-btn').on('click', function(e) {
+		$('.vigipress-fix-all-btn').on('click', function(e) {
 			e.preventDefault();
 			
 			const $button = $(this);
-			const $healthCard = $('.vigil-health-card');
-			const $issuesCard = $('.vigil-issues-card');
-			const $scoreCircle = $('.vigil-score-circle');
-			const $scoreGrade = $('.vigil-score-grade');
-			const $scoreNumber = $('.vigil-score-number');
-			const $scoreStatus = $('.vigil-score-status span');
-			const $progressFill = $('.vigil-progress-fill');
+			const $healthCard = $('.vigipress-health-card');
+			const $issuesCard = $('.vigipress-issues-card');
+			const $scoreCircle = $('.vigipress-score-circle');
+			const $scoreGrade = $('.vigipress-score-grade');
+			const $scoreNumber = $('.vigipress-score-number');
+			const $scoreStatus = $('.vigipress-score-status span');
+			const $progressFill = $('.vigipress-progress-fill');
 			
 			// Disable button and show loading state
 			$button.prop('disabled', true).html('<span class="dashicons dashicons-update spin"></span> Applying fixes...');
@@ -38,11 +38,11 @@
 			
 			// Send AJAX request
 			$.ajax({
-				url: vigilSecurity.ajaxUrl,
+				url: vigipressSecurity.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'vigil_fix_all_issues',
-					nonce: vigilSecurity.nonce
+					action: 'vigipress_fix_all_issues',
+					nonce: vigipressSecurity.nonce
 				},
 				success: function(response) {
 					if (response.success) {
@@ -66,9 +66,9 @@
 						
 						// Replace issues list with success message
 						setTimeout(function() {
-							$issuesCard.find('.vigil-card-body').fadeOut(300, function() {
+							$issuesCard.find('.vigipress-card-body').fadeOut(300, function() {
 								$(this).html(`
-									<div class="vigil-no-issues">
+									<div class="vigipress-no-issues">
 										<span class="dashicons dashicons-yes-alt"></span>
 										<p>No security issues detected!</p>
 									</div>
@@ -132,9 +132,9 @@
 					$progress.css('background-color', data.color);
 					
 					// Add pulse animation
-					$circle.addClass('vigil-pulse');
+					$circle.addClass('vigipress-pulse');
 					setTimeout(function() {
-						$circle.removeClass('vigil-pulse');
+						$circle.removeClass('vigipress-pulse');
 					}, 1000);
 				}
 			}, duration / steps);
@@ -145,17 +145,17 @@
 		 */
 		function showSuccessBanner(data) {
 			const $banner = $(`
-				<div class="notice notice-success vigil-success-banner" style="display:none;">
+				<div class="notice notice-success vigipress-success-banner" style="display:none;">
 					<p>
 						<strong>🎉 Security Enhanced!</strong><br>
 						Your security score improved from <strong>${data.old_score}</strong> to <strong>${data.new_score}</strong>. 
 						${data.issues_fixed} security issues were fixed automatically.
-						<a href="admin.php?page=vigil-security-settings" style="margin-left: 10px;">View Settings →</a>
+						<a href="admin.php?page=vigipress-security-settings" style="margin-left: 10px;">View Settings →</a>
 					</p>
 				</div>
 			`);
 			
-			$('.vigil-wrap').prepend($banner);
+			$('.vigipress-wrap').prepend($banner);
 			$banner.slideDown(300);
 			
 			// Scroll to top smoothly
@@ -167,12 +167,12 @@
 		 */
 		function showErrorBanner(message) {
 			const $banner = $(`
-				<div class="notice notice-error vigil-error-banner" style="display:none;">
+				<div class="notice notice-error vigipress-error-banner" style="display:none;">
 					<p><strong>Error:</strong> ${message}</p>
 				</div>
 			`);
 			
-			$('.vigil-wrap').prepend($banner);
+			$('.vigipress-wrap').prepend($banner);
 			$banner.slideDown(300);
 			
 			// Auto-remove after 5 seconds
@@ -186,12 +186,12 @@
 		 */
 		function updateStatsCards() {
 			// Update "Login Protection" stat
-			$('.vigil-stat-card').eq(0).find('.vigil-stat-value').fadeOut(200, function() {
+			$('.vigipress-stat-card').eq(0).find('.vigipress-stat-value').fadeOut(200, function() {
 				$(this).text('Active').css('color', '#10b981').fadeIn(200);
 			});
 			
 			// Update "Hardening Rules" stat
-			$('.vigil-stat-card').eq(1).find('.vigil-stat-value').fadeOut(200, function() {
+			$('.vigipress-stat-card').eq(1).find('.vigipress-stat-value').fadeOut(200, function() {
 				$(this).text('3/3').css('color', '#10b981').fadeIn(200);
 			});
 		}
@@ -212,13 +212,13 @@
 				0%, 100% { transform: scale(1); }
 				50% { transform: scale(1.05); }
 			}
-			.vigil-pulse {
+			.vigipress-pulse {
 				animation: pulse 0.6s ease-in-out;
 			}
-			.vigil-success-banner {
+			.vigipress-success-banner {
 				border-left: 4px solid #10b981;
 			}
-			.vigil-error-banner {
+			.vigipress-error-banner {
 				border-left: 4px solid #dc2626;
 			}
 		`;
@@ -227,7 +227,7 @@
 		/**
 		 * Handle custom dismissible notices (AJAX method).
 		 */
-		$(document).on('click', '.vigil-dismissible-notice .notice-dismiss', function(e) {
+		$(document).on('click', '.vigipress-dismissible-notice .notice-dismiss', function(e) {
 			e.preventDefault();
 			e.stopPropagation();
 			
@@ -235,7 +235,7 @@
 			const noticeId = $notice.data('notice-id');
 			
 			if (!noticeId) {
-				console.error('Vigil Security: No notice ID found');
+				console.error('VigiPress Security: No notice ID found');
 				return;
 			}
 			
@@ -246,15 +246,15 @@
 			
 			// Send AJAX to save dismissal
 			$.ajax({
-				url: vigilSecurity.ajaxUrl,
+				url: vigipressSecurity.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'vigil_dismiss_notice',
-					nonce: vigilSecurity.nonce,
+					action: 'vigipress_dismiss_notice',
+					nonce: vigipressSecurity.nonce,
 					notice_id: noticeId
 				},
 				error: function(xhr, status, error) {
-					console.error('Vigil Security: Failed to save notice dismissal', {
+					console.error('VigiPress Security: Failed to save notice dismissal', {
 						status: status,
 						error: error
 					});
@@ -265,7 +265,7 @@
 		/**
 		 * Handle IP unlock button clicks.
 		 */
-		$(document).on('click', '.vigil-unlock-ip-btn', function(e) {
+		$(document).on('click', '.vigipress-unlock-ip-btn', function(e) {
 			e.preventDefault();
 			
 			const $button = $(this);
@@ -281,11 +281,11 @@
 			
 			// Send AJAX request
 			$.ajax({
-				url: vigilSecurity.ajaxUrl,
+				url: vigipressSecurity.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'vigil_unlock_ip',
-					nonce: vigilSecurity.nonce,
+					action: 'vigipress_unlock_ip',
+					nonce: vigipressSecurity.nonce,
 					ip: ip
 				},
 				success: function(response) {
@@ -295,8 +295,8 @@
 							$(this).remove();
 							
 							// If no more rows, hide the entire table
-							if ($('.vigil-locked-ips-card tbody tr').length === 0) {
-								$('.vigil-locked-ips-card').fadeOut(300, function() {
+							if ($('.vigipress-locked-ips-card tbody tr').length === 0) {
+								$('.vigipress-locked-ips-card').fadeOut(300, function() {
 									$(this).remove();
 								});
 							}
@@ -316,7 +316,7 @@
 		/**
 		 * Handle manual file integrity check button.
 		 */
-		$(document).on('click', '.vigil-run-file-check-btn', function(e) {
+		$(document).on('click', '.vigipress-run-file-check-btn', function(e) {
 			e.preventDefault();
 			
 			const $button = $(this);
@@ -327,11 +327,11 @@
 			
 			// Send AJAX request
 			$.ajax({
-				url: vigilSecurity.ajaxUrl,
+				url: vigipressSecurity.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'vigil_run_file_check',
-					nonce: vigilSecurity.nonce
+					action: 'vigipress_run_file_check',
+					nonce: vigipressSecurity.nonce
 				},
 				success: function(response) {
 					if (response.success) {
@@ -369,7 +369,7 @@
 		/**
 		 * Handle "Reset Plugin" button.
 		 */
-		$(document).on('click', '.vigil-reset-plugin-btn', function(e) {
+		$(document).on('click', '.vigipress-reset-plugin-btn', function(e) {
 			e.preventDefault();
 			
 			const $button = $(this);
@@ -383,11 +383,11 @@
 			
 			// Send AJAX request
 			$.ajax({
-				url: vigilSecurity.ajaxUrl,
+				url: vigipressSecurity.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'vigil_reset_plugin',
-					nonce: vigilSecurity.nonce
+					action: 'vigipress_reset_plugin',
+					nonce: vigipressSecurity.nonce
 				},
 				success: function(response) {
 					if (response.success) {
@@ -408,7 +408,7 @@
 		/**
 		 * Handle "Clear All Logs" button.
 		 */
-		$(document).on('click', '.vigil-clear-logs-btn', function(e) {
+		$(document).on('click', '.vigipress-clear-logs-btn', function(e) {
 			e.preventDefault();
 			
 			const $button = $(this);
@@ -427,11 +427,11 @@
 			
 			// Send AJAX request
 			$.ajax({
-				url: vigilSecurity.ajaxUrl,
+				url: vigipressSecurity.ajaxUrl,
 				type: 'POST',
 				data: {
-					action: 'vigil_clear_logs',
-					nonce: vigilSecurity.nonce
+					action: 'vigipress_clear_logs',
+					nonce: vigipressSecurity.nonce
 				},
 				success: function(response) {
 					if (response.success) {
