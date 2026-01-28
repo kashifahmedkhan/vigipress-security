@@ -1,1 +1,1 @@
-# Vigil Security WordPress Plugin
+# Vigil Security

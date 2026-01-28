@@ -147,6 +147,20 @@ register_deactivation_hook( __FILE__, 'vigil_security_deactivate' );
 require_once VIGIL_SECURITY_PATH . 'includes/class-vigil-core.php';
 
 /**
+ * Load plugin textdomain for translations.
+ *
+ * @since 1.0.0
+ */
+function vigil_security_load_textdomain() {
+	load_plugin_textdomain(
+		'vigil-security',
+		false,
+		dirname( VIGIL_SECURITY_BASENAME ) . '/languages/'
+	);
+}
+add_action( 'plugins_loaded', 'vigil_security_load_textdomain' );
+
+/**
  * Begin execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,

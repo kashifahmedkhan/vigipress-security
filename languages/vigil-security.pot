@@ -1,0 +1,825 @@
+Copyright (C) 2026 Kashif
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Vigil Security 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Vigil-Security\n"
+"Last-Translator: Vigil Security Team\n"
+"Language-Team: English <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-01-28T18:30:30+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: vigil-security\n"
+
+#. Plugin Name of the plugin
+#: vigil-security.php
+#: admin/class-vigil-admin.php:81
+#: admin/class-vigil-admin.php:82
+msgid "Vigil Security"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: vigil-security.php
+msgid "https://wordpress.org/plugins/vigil-security"
+msgstr ""
+
+#. Description of the plugin
+#: vigil-security.php
+msgid "Simple, one-click WordPress security hardening for non-technical users. Protect your site without reading a manual."
+msgstr ""
+
+#. Author of the plugin
+#: vigil-security.php
+msgid "Kashif"
+msgstr ""
+
+#. Author URI of the plugin
+#: vigil-security.php
+msgid "https://profiles.wordpress.org/kashifahmedkhan/"
+msgstr ""
+
+#: admin/class-vigil-admin.php:93
+#: admin/class-vigil-admin.php:94
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-vigil-admin.php:102
+#: admin/class-vigil-admin.php:103
+#: includes/class-vigil-core.php:189
+msgid "Settings"
+msgstr ""
+
+#: admin/class-vigil-admin.php:111
+#: admin/class-vigil-admin.php:112
+#: admin/views/logs.php:20
+msgid "Activity Log"
+msgstr ""
+
+#: admin/class-vigil-admin.php:179
+#: admin/class-vigil-admin.php:206
+#: admin/class-vigil-admin.php:247
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: admin/class-vigil-admin.php:228
+msgid "Security Headers Active!"
+msgstr ""
+
+#: admin/class-vigil-admin.php:229
+msgid "Security headers are being sent on all frontend pages. To verify, open your homepage (not admin) and check browser DevTools → Network → Response Headers."
+msgstr ""
+
+#: admin/class-vigil-admin.php:343
+msgid "Excellent"
+msgstr ""
+
+#: admin/class-vigil-admin.php:349
+msgid "Good"
+msgstr ""
+
+#: admin/class-vigil-admin.php:355
+msgid "Fair"
+msgstr ""
+
+#: admin/class-vigil-admin.php:361
+msgid "Poor"
+msgstr ""
+
+#: admin/class-vigil-admin.php:367
+msgid "Critical"
+msgstr ""
+
+#: admin/class-vigil-admin.php:384
+msgid "XML-RPC is enabled"
+msgstr ""
+
+#: admin/class-vigil-admin.php:385
+msgid "This can be exploited for brute force attacks"
+msgstr ""
+
+#: admin/class-vigil-admin.php:393
+msgid "File editing is enabled"
+msgstr ""
+
+#: admin/class-vigil-admin.php:394
+msgid "Hackers can modify your theme/plugin files"
+msgstr ""
+
+#: admin/class-vigil-admin.php:402
+msgid "Login protection is disabled"
+msgstr ""
+
+#: admin/class-vigil-admin.php:403
+msgid "Your site is vulnerable to brute force attacks"
+msgstr ""
+
+#: admin/class-vigil-admin.php:411
+msgid "WordPress version is visible"
+msgstr ""
+
+#: admin/class-vigil-admin.php:412
+msgid "Attackers can target known vulnerabilities"
+msgstr ""
+
+#: admin/class-vigil-admin.php:420
+msgid "SSL is not enforced on admin"
+msgstr ""
+
+#: admin/class-vigil-admin.php:421
+msgid "Your login credentials can be intercepted"
+msgstr ""
+
+#: admin/class-vigil-admin.php:430
+msgid "Database uses default prefix"
+msgstr ""
+
+#: admin/class-vigil-admin.php:431
+msgid "Makes SQL injection attacks easier"
+msgstr ""
+
+#: admin/class-vigil-admin.php:473
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#: admin/class-vigil-admin.php:528
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: admin/class-vigil-admin.php:547
+#: admin/class-vigil-admin.php:670
+#: admin/class-vigil-admin.php:735
+#: admin/class-vigil-admin.php:775
+#: admin/class-vigil-admin.php:812
+#: admin/class-vigil-admin.php:875
+msgid "Unauthorized"
+msgstr ""
+
+#: admin/class-vigil-admin.php:581
+msgid "All security issues have been fixed!"
+msgstr ""
+
+#. translators: 1: old score, 2: new score
+#: admin/class-vigil-admin.php:616
+#, php-format
+msgid "Applied all security fixes. Health score improved from %1$d to %2$d."
+msgstr ""
+
+#: admin/class-vigil-admin.php:677
+msgid "Invalid notice ID"
+msgstr ""
+
+#: admin/class-vigil-admin.php:685
+msgid "Notice dismissed"
+msgstr ""
+
+#: admin/class-vigil-admin.php:742
+msgid "Invalid IP address"
+msgstr ""
+
+#. translators: %s: IP address
+#: admin/class-vigil-admin.php:754
+#, php-format
+msgid "IP address %s has been unlocked."
+msgstr ""
+
+#: admin/class-vigil-admin.php:761
+msgid "Failed to unlock IP address"
+msgstr ""
+
+#: admin/class-vigil-admin.php:788
+msgid "File integrity scan completed!"
+msgstr ""
+
+#: admin/class-vigil-admin.php:795
+msgid "File integrity module not available"
+msgstr ""
+
+#: admin/class-vigil-admin.php:849
+msgid "Plugin settings reset to defaults"
+msgstr ""
+
+#: admin/class-vigil-admin.php:857
+msgid "Plugin settings have been reset to defaults."
+msgstr ""
+
+#. translators: %d: number of deleted logs
+#: admin/class-vigil-admin.php:902
+#, php-format
+msgid "Cleared %d security log entries"
+msgstr ""
+
+#. translators: %d: number of deleted logs
+#: admin/class-vigil-admin.php:914
+#, php-format
+msgid "%d security log entries have been cleared."
+msgstr ""
+
+#: admin/views/dashboard.php:19
+msgid "Vigil Security Dashboard"
+msgstr ""
+
+#: admin/views/dashboard.php:26
+msgid "Security Health Score"
+msgstr ""
+
+#. translators: %d: number of security issues
+#: admin/views/dashboard.php:56
+#, php-format
+msgid "%d security issue found"
+msgid_plural "%d security issues found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/dashboard.php:64
+msgid "Fix All Issues (One Click)"
+msgstr ""
+
+#: admin/views/dashboard.php:70
+msgid "Excellent! Your site is well protected."
+msgstr ""
+
+#: admin/views/dashboard.php:79
+msgid "Security Checklist"
+msgstr ""
+
+#: admin/views/dashboard.php:105
+msgid "No security issues detected!"
+msgstr ""
+
+#: admin/views/dashboard.php:119
+msgid "Active"
+msgstr ""
+
+#: admin/views/dashboard.php:119
+msgid "Inactive"
+msgstr ""
+
+#: admin/views/dashboard.php:121
+#: admin/views/settings.php:33
+msgid "Login Protection"
+msgstr ""
+
+#: admin/views/dashboard.php:145
+msgid "Hardening Rules"
+msgstr ""
+
+#: admin/views/dashboard.php:163
+msgid "Logged Events"
+msgstr ""
+
+#: admin/views/dashboard.php:179
+msgid "Currently Blocked IP Addresses"
+msgstr ""
+
+#: admin/views/dashboard.php:185
+#: admin/views/logs.php:32
+msgid "IP Address"
+msgstr ""
+
+#: admin/views/dashboard.php:186
+msgid "Username Attempted"
+msgstr ""
+
+#: admin/views/dashboard.php:187
+msgid "Failed Attempts"
+msgstr ""
+
+#: admin/views/dashboard.php:188
+msgid "Locked At"
+msgstr ""
+
+#: admin/views/dashboard.php:189
+msgid "Time Remaining"
+msgstr ""
+
+#: admin/views/dashboard.php:190
+msgid "Actions"
+msgstr ""
+
+#. translators: %d: minutes remaining
+#: admin/views/dashboard.php:214
+#, php-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/dashboard.php:225
+msgid "Unlock"
+msgstr ""
+
+#: admin/views/dashboard.php:247
+msgid "File Integrity Monitor"
+msgstr ""
+
+#: admin/views/dashboard.php:253
+msgid "Last Scan:"
+msgstr ""
+
+#: admin/views/dashboard.php:266
+msgid "Files Checked"
+msgstr ""
+
+#: admin/views/dashboard.php:270
+msgid "Modified"
+msgstr ""
+
+#: admin/views/dashboard.php:274
+msgid "Unexpected"
+msgstr ""
+
+#: admin/views/dashboard.php:281
+msgid "Security Alert:"
+msgstr ""
+
+#: admin/views/dashboard.php:282
+msgid "Modified or unexpected files detected. Check your email for details."
+msgstr ""
+
+#: admin/views/dashboard.php:287
+msgid "All core files are intact!"
+msgstr ""
+
+#: admin/views/dashboard.php:293
+msgid "Run Manual Scan"
+msgstr ""
+
+#: admin/views/dashboard.php:297
+msgid "No file integrity scan has been run yet."
+msgstr ""
+
+#: admin/views/dashboard.php:300
+msgid "Run First Scan"
+msgstr ""
+
+#: admin/views/logs.php:29
+msgid "Date & Time"
+msgstr ""
+
+#: admin/views/logs.php:30
+msgid "Event"
+msgstr ""
+
+#: admin/views/logs.php:31
+msgid "User"
+msgstr ""
+
+#: admin/views/logs.php:33
+msgid "Severity"
+msgstr ""
+
+#: admin/views/logs.php:60
+msgid "Guest"
+msgstr ""
+
+#: admin/views/logs.php:98
+msgid "No activity logs found."
+msgstr ""
+
+#: admin/views/settings.php:23
+msgid "Vigil Security Settings"
+msgstr ""
+
+#: admin/views/settings.php:40
+#: includes/modules/class-hardening.php:229
+msgid "Enable Login Protection"
+msgstr ""
+
+#: admin/views/settings.php:49
+msgid "Blocks IP addresses after too many failed login attempts."
+msgstr ""
+
+#: admin/views/settings.php:56
+msgid "Max Login Attempts"
+msgstr ""
+
+#: admin/views/settings.php:62
+msgid "Number of failed attempts before lockout (3-10)."
+msgstr ""
+
+#: admin/views/settings.php:69
+msgid "Lockout Duration"
+msgstr ""
+
+#: admin/views/settings.php:75
+msgid "5 minutes"
+msgstr ""
+
+#: admin/views/settings.php:78
+msgid "15 minutes"
+msgstr ""
+
+#: admin/views/settings.php:81
+msgid "30 minutes"
+msgstr ""
+
+#: admin/views/settings.php:84
+msgid "1 hour"
+msgstr ""
+
+#: admin/views/settings.php:96
+msgid "Security Hardening"
+msgstr ""
+
+#: admin/views/settings.php:103
+#: includes/modules/class-hardening.php:184
+msgid "Disable XML-RPC"
+msgstr ""
+
+#: admin/views/settings.php:112
+msgid "Prevents brute force attacks via XML-RPC (safe for most sites)."
+msgstr ""
+
+#: admin/views/settings.php:119
+#: includes/modules/class-hardening.php:193
+msgid "Disable File Editing"
+msgstr ""
+
+#: admin/views/settings.php:128
+msgid "Prevents editing theme/plugin files from admin (recommended)."
+msgstr ""
+
+#: admin/views/settings.php:135
+#: includes/modules/class-hardening.php:202
+msgid "Hide WordPress Version"
+msgstr ""
+
+#: admin/views/settings.php:144
+msgid "Removes version number from page source."
+msgstr ""
+
+#: admin/views/settings.php:151
+#: includes/modules/class-hardening.php:211
+msgid "Block User Enumeration"
+msgstr ""
+
+#: admin/views/settings.php:160
+msgid "Prevents hackers from discovering usernames via /?author=1."
+msgstr ""
+
+#: admin/views/settings.php:170
+msgid "Security Headers"
+msgstr ""
+
+#: admin/views/settings.php:177
+#: includes/modules/class-hardening.php:220
+msgid "Enable Security Headers"
+msgstr ""
+
+#: admin/views/settings.php:186
+msgid "Adds X-Frame-Options, X-XSS-Protection, and other protective headers."
+msgstr ""
+
+#: admin/views/settings.php:196
+msgid "Activity Logging"
+msgstr ""
+
+#: admin/views/settings.php:203
+msgid "Enable Activity Log"
+msgstr ""
+
+#: admin/views/settings.php:212
+msgid "Track user logins, failed attempts, and security events."
+msgstr ""
+
+#: admin/views/settings.php:219
+msgid "Keep Logs For"
+msgstr ""
+
+#: admin/views/settings.php:224
+msgid "days"
+msgstr ""
+
+#: admin/views/settings.php:226
+msgid "Older logs will be automatically deleted (7-365 days)."
+msgstr ""
+
+#: admin/views/settings.php:236
+msgid "File Integrity Monitoring"
+msgstr ""
+
+#: admin/views/settings.php:243
+msgid "Enable File Monitoring"
+msgstr ""
+
+#: admin/views/settings.php:252
+msgid "Weekly check for modified WordPress core files."
+msgstr ""
+
+#: admin/views/settings.php:259
+msgid "Alert Email"
+msgstr ""
+
+#: admin/views/settings.php:265
+msgid "Email address to receive alerts about file changes."
+msgstr ""
+
+#: admin/views/settings.php:278
+msgid "Data Management"
+msgstr ""
+
+#: admin/views/settings.php:285
+msgid "Keep Data on Uninstall"
+msgstr ""
+
+#: admin/views/settings.php:297
+msgid "If enabled, security logs and data will be preserved when you delete the plugin. Disable for complete removal."
+msgstr ""
+
+#: admin/views/settings.php:303
+msgid "Reset Plugin"
+msgstr ""
+
+#: admin/views/settings.php:308
+msgid "Reset All Settings"
+msgstr ""
+
+#: admin/views/settings.php:311
+msgid "Reset all settings to default values. Security logs will be preserved."
+msgstr ""
+
+#: admin/views/settings.php:317
+msgid "Clear Security Logs"
+msgstr ""
+
+#: admin/views/settings.php:328
+msgid "Clear All Logs"
+msgstr ""
+
+#. translators: %s: number of log entries
+#: admin/views/settings.php:334
+#, php-format
+msgid "Permanently delete all %s security log entries. This cannot be undone."
+msgstr ""
+
+#: admin/views/settings.php:348
+msgid "Data Removal Preview"
+msgstr ""
+
+#: admin/views/settings.php:349
+msgid "If you delete this plugin, the following data will be removed:"
+msgstr ""
+
+#: admin/views/settings.php:351
+#, php-format
+msgid "%d plugin settings"
+msgstr ""
+
+#: admin/views/settings.php:352
+#, php-format
+msgid "%d security log entries"
+msgstr ""
+
+#: admin/views/settings.php:353
+#, php-format
+msgid "%d user preferences"
+msgstr ""
+
+#: admin/views/settings.php:354
+#, php-format
+msgid "%d temporary cache entries"
+msgstr ""
+
+#: admin/views/settings.php:360
+msgid "✅ Data retention is ENABLED. Security logs will be preserved."
+msgstr ""
+
+#: admin/views/settings.php:362
+msgid "⚠️ Data retention is DISABLED. All data will be permanently deleted."
+msgstr ""
+
+#: admin/views/settings.php:375
+msgid "Save All Settings"
+msgstr ""
+
+#: includes/class-vigil-core.php:172
+msgid "Vigil Security is now active!"
+msgstr ""
+
+#: includes/class-vigil-core.php:175
+msgid "Your site is currently running with default (safe) security settings. The Security Dashboard will be available shortly."
+msgstr ""
+
+#: includes/class-vigil-core.php:256
+#: includes/class-vigil-core.php:262
+#: includes/modules/class-hardening.php:120
+#: includes/modules/class-hardening.php:142
+msgid "Forbidden"
+msgstr ""
+
+#. translators: %s: uninstall type
+#: includes/class-vigil-uninstaller.php:171
+#, php-format
+msgid "Plugin uninstalled (%s cleanup)"
+msgstr ""
+
+#. translators: %s: WordPress version
+#: includes/modules/class-file-integrity.php:86
+#, php-format
+msgid "Failed to retrieve WordPress checksums for version %s"
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:92
+msgid "Could not retrieve checksums"
+msgstr ""
+
+#. translators: 1: files checked, 2: modified count, 3: unexpected count
+#: includes/modules/class-file-integrity.php:122
+#, php-format
+msgid "File integrity check completed. Checked: %1$d, Modified: %2$d, Unexpected: %3$d"
+msgstr ""
+
+#. translators: %s: site name
+#: includes/modules/class-file-integrity.php:264
+#, php-format
+msgid "[%s] Security Alert: File Integrity Issues Detected"
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:268
+msgid ""
+"Vigil Security has detected changes to your WordPress core files.\n"
+"\n"
+""
+msgstr ""
+
+#. translators: %d: number of modified files
+#: includes/modules/class-file-integrity.php:273
+#, php-format
+msgid ""
+"Modified Core Files (%d):\n"
+""
+msgstr ""
+
+#. translators: %d: number of additional files
+#: includes/modules/class-file-integrity.php:282
+#: includes/modules/class-file-integrity.php:301
+#, php-format
+msgid ""
+"...and %d more files\n"
+""
+msgstr ""
+
+#. translators: %d: number of unexpected files
+#: includes/modules/class-file-integrity.php:292
+#, php-format
+msgid ""
+"Unexpected Files (%d):\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:308
+msgid ""
+"What this means:\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:309
+msgid ""
+"- Modified files may indicate a hack or plugin conflict\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:310
+msgid ""
+"- Unexpected files could be malware injections\n"
+"\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:311
+msgid ""
+"Recommended actions:\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:312
+msgid ""
+"1. Check your WordPress admin dashboard for updates\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:313
+msgid ""
+"2. Review the files listed above\n"
+""
+msgstr ""
+
+#: includes/modules/class-file-integrity.php:314
+msgid ""
+"3. Consider reinstalling WordPress core files\n"
+"\n"
+""
+msgstr ""
+
+#. translators: %s: admin URL
+#: includes/modules/class-file-integrity.php:317
+#, php-format
+msgid ""
+"View full report: %s\n"
+""
+msgstr ""
+
+#: includes/modules/class-hardening.php:185
+msgid "Prevents brute force attacks via XML-RPC"
+msgstr ""
+
+#: includes/modules/class-hardening.php:194
+msgid "Prevents editing theme/plugin files from admin"
+msgstr ""
+
+#: includes/modules/class-hardening.php:203
+msgid "Removes version number from page source"
+msgstr ""
+
+#: includes/modules/class-hardening.php:212
+msgid "Prevents discovering usernames via URL"
+msgstr ""
+
+#: includes/modules/class-hardening.php:221
+msgid "Adds protective HTTP headers"
+msgstr ""
+
+#: includes/modules/class-hardening.php:230
+msgid "Blocks brute force login attempts"
+msgstr ""
+
+#. translators: %s: remaining lockout time in minutes
+#: includes/modules/class-login-protection.php:90
+#, php-format
+msgid "Login attempt blocked. %s minutes remaining in lockout."
+msgstr ""
+
+#. translators: %s: remaining lockout time in minutes
+#: includes/modules/class-login-protection.php:101
+#, php-format
+msgid "<strong>Security Alert:</strong> Too many failed login attempts. Please try again in %s minutes."
+msgstr ""
+
+#. translators: 1: attempt number, 2: max attempts
+#: includes/modules/class-login-protection.php:156
+#, php-format
+msgid "Failed login attempt (%1$d of %2$d)"
+msgstr ""
+
+#. translators: 1: attempt count, 2: lockout duration in minutes
+#: includes/modules/class-login-protection.php:197
+#, php-format
+msgid "IP locked out after %1$d failed attempts. Lockout duration: %2$d minutes."
+msgstr ""
+
+#: includes/modules/class-login-protection.php:227
+msgid "User logged in successfully"
+msgstr ""
+
+#. translators: %s: remaining lockout time in minutes
+#: includes/modules/class-login-protection.php:250
+#, php-format
+msgid "<strong>Security Alert:</strong> This IP address has been temporarily blocked due to too many failed login attempts. Please try again in %s minutes."
+msgstr ""
+
+#. translators: %s: site name
+#: includes/modules/class-login-protection.php:272
+#, php-format
+msgid "[%s] Security Alert: IP Address Locked Out"
+msgstr ""
+
+#. translators: 1: IP address, 2: username, 3: attempt count, 4: lockout duration
+#: includes/modules/class-login-protection.php:279
+#, php-format
+msgid ""
+"Security Alert from Vigil Security\n"
+"\n"
+"An IP address has been locked out due to too many failed login attempts.\n"
+"\n"
+"Details:\n"
+"- IP Address: %1$s\n"
+"- Attempted Username: %2$s\n"
+"- Failed Attempts: %3$d\n"
+"- Lockout Duration: %4$d minutes\n"
+"\n"
+"This is an automated message from Vigil Security plugin.\n"
+"If you did not attempt to log in, your site may be under attack.\n"
+"\n"
+"To view all security events, visit your WordPress admin dashboard."
+msgstr ""
+
+#. translators: %s: IP address
+#: includes/modules/class-login-protection.php:424
+#, php-format
+msgid "Manually unlocked IP: %s"
+msgstr ""
+
+#. translators: 1: Required WordPress version, 2: Current WordPress version
+#: vigil-security.php:88
+#, php-format
+msgid "Vigil Security requires WordPress version %1$s or higher. You are running version %2$s. Please upgrade WordPress."
+msgstr ""
+
+#. translators: 1: Required PHP version, 2: Current PHP version
+#: vigil-security.php:108
+#, php-format
+msgid "Vigil Security requires PHP version %1$s or higher. You are running version %2$s. Please contact your hosting provider."
+msgstr ""
