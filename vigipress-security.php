@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       VigiPress Security
+ * Plugin Name:       VigiPress Security Plugin
  * Plugin URI:        https://wordpress.org/plugins/vigipress-security
  * Description:       Simple, one-click WordPress security hardening for non-technical users. Protect your site without reading a manual.
  * Version:           1.0.0
