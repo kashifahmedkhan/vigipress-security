@@ -2,8 +2,8 @@
 /**
  * Settings page view template.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/admin/views
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/admin/views
  * @since      1.0.0
  * 
  */
@@ -14,74 +14,74 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Display success/error messages.
-settings_errors( 'vigipress_security_messages' );
+settings_errors( 'vigiguard_security_messages' );
 ?>
 
-<div class="wrap vigipress-wrap">
-	<h1 class="vigipress-page-title">
+<div class="wrap vigiguard-wrap">
+	<h1 class="vigiguard-page-title">
 		<span class="dashicons dashicons-admin-settings"></span>
-		<?php esc_html_e( 'VigiPress Security Settings', 'vigipress-security' ); ?>
+		<?php esc_html_e( 'VigiGuard Security Settings', 'vigiguard-security' ); ?>
 	</h1>
 
 	<form method="post" action="">
-		<?php wp_nonce_field( 'vigipress_security_save_settings', 'vigipress_security_settings_nonce' ); ?>
+		<?php wp_nonce_field( 'vigiguard_security_save_settings', 'vigiguard_security_settings_nonce' ); ?>
 
-		<div class="vigipress-settings-grid">
+		<div class="vigiguard-settings-grid">
 			<!-- Login Protection Settings -->
-			<div class="vigipress-card">
-				<div class="vigipress-card-header">
-					<h2><?php esc_html_e( 'Login Protection', 'vigipress-security' ); ?></h2>
+			<div class="vigiguard-card">
+				<div class="vigiguard-card-header">
+					<h2><?php esc_html_e( 'Login Protection', 'vigiguard-security' ); ?></h2>
 				</div>
-				<div class="vigipress-card-body">
+				<div class="vigiguard-card-body">
 					<table class="form-table">
 						<tr>
 							<th scope="row">
 								<label for="login_protection_enabled">
-									<?php esc_html_e( 'Enable Login Protection', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Enable Login Protection', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
-								<label class="vigipress-toggle">
+								<label class="vigiguard-toggle">
 									<input type="checkbox" name="login_protection_enabled" id="login_protection_enabled" value="1" <?php checked( ! empty( $this->settings['login_protection_enabled'] ) ); ?>>
-									<span class="vigipress-toggle-slider"></span>
+									<span class="vigiguard-toggle-slider"></span>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Blocks IP addresses after too many failed login attempts.', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Blocks IP addresses after too many failed login attempts.', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
 								<label for="login_attempts_max">
-									<?php esc_html_e( 'Max Login Attempts', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Max Login Attempts', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
 								<input type="number" name="login_attempts_max" id="login_attempts_max" value="<?php echo esc_attr( $this->settings['login_attempts_max'] ?? 5 ); ?>" min="3" max="10" class="small-text">
 								<p class="description">
-									<?php esc_html_e( 'Number of failed attempts before lockout (3-10).', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Number of failed attempts before lockout (3-10).', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
 								<label for="login_lockout_duration">
-									<?php esc_html_e( 'Lockout Duration', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Lockout Duration', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
 								<select name="login_lockout_duration" id="login_lockout_duration">
 									<option value="300" <?php selected( $this->settings['login_lockout_duration'] ?? 900, 300 ); ?>>
-										<?php esc_html_e( '5 minutes', 'vigipress-security' ); ?>
+										<?php esc_html_e( '5 minutes', 'vigiguard-security' ); ?>
 									</option>
 									<option value="900" <?php selected( $this->settings['login_lockout_duration'] ?? 900, 900 ); ?>>
-										<?php esc_html_e( '15 minutes', 'vigipress-security' ); ?>
+										<?php esc_html_e( '15 minutes', 'vigiguard-security' ); ?>
 									</option>
 									<option value="1800" <?php selected( $this->settings['login_lockout_duration'] ?? 900, 1800 ); ?>>
-										<?php esc_html_e( '30 minutes', 'vigipress-security' ); ?>
+										<?php esc_html_e( '30 minutes', 'vigiguard-security' ); ?>
 									</option>
 									<option value="3600" <?php selected( $this->settings['login_lockout_duration'] ?? 900, 3600 ); ?>>
-										<?php esc_html_e( '1 hour', 'vigipress-security' ); ?>
+										<?php esc_html_e( '1 hour', 'vigiguard-security' ); ?>
 									</option>
 								</select>
 							</td>
@@ -91,73 +91,73 @@ settings_errors( 'vigipress_security_messages' );
 			</div>
 
 			<!-- Hardening Settings -->
-			<div class="vigipress-card">
-				<div class="vigipress-card-header">
-					<h2><?php esc_html_e( 'Security Hardening', 'vigipress-security' ); ?></h2>
+			<div class="vigiguard-card">
+				<div class="vigiguard-card-header">
+					<h2><?php esc_html_e( 'Security Hardening', 'vigiguard-security' ); ?></h2>
 				</div>
-				<div class="vigipress-card-body">
+				<div class="vigiguard-card-body">
 					<table class="form-table">
 						<tr>
 							<th scope="row">
 								<label for="disable_xmlrpc">
-									<?php esc_html_e( 'Disable XML-RPC', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Disable XML-RPC', 'vigiguard-security' ); ?>
 								</label>
 								</th>
 							<td>
-								<label class="vigipress-toggle">
+								<label class="vigiguard-toggle">
 									<input type="checkbox" name="disable_xmlrpc" id="disable_xmlrpc" value="1" <?php checked( ! empty( $this->settings['disable_xmlrpc'] ) ); ?>>
-									<span class="vigipress-toggle-slider"></span>
+									<span class="vigiguard-toggle-slider"></span>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Prevents brute force attacks via XML-RPC (safe for most sites).', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Prevents brute force attacks via XML-RPC (safe for most sites).', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
 								<label for="disable_file_edit">
-									<?php esc_html_e( 'Disable File Editing', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Disable File Editing', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
-								<label class="vigipress-toggle">
+								<label class="vigiguard-toggle">
 									<input type="checkbox" name="disable_file_edit" id="disable_file_edit" value="1" <?php checked( ! empty( $this->settings['disable_file_edit'] ) ); ?>>
-									<span class="vigipress-toggle-slider"></span>
+									<span class="vigiguard-toggle-slider"></span>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Prevents editing theme/plugin files from admin (recommended).', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Prevents editing theme/plugin files from admin (recommended).', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
 								<label for="hide_wp_version">
-									<?php esc_html_e( 'Hide WordPress Version', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Hide WordPress Version', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
-								<label class="vigipress-toggle">
+								<label class="vigiguard-toggle">
 									<input type="checkbox" name="hide_wp_version" id="hide_wp_version" value="1" <?php checked( ! empty( $this->settings['hide_wp_version'] ) ); ?>>
-									<span class="vigipress-toggle-slider"></span>
+									<span class="vigiguard-toggle-slider"></span>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Removes version number from page source.', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Removes version number from page source.', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
 								<label for="disable_user_enumeration">
-									<?php esc_html_e( 'Block User Enumeration', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Block User Enumeration', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
-								<label class="vigipress-toggle">
+								<label class="vigiguard-toggle">
 									<input type="checkbox" name="disable_user_enumeration" id="disable_user_enumeration" value="1" <?php checked( ! empty( $this->settings['disable_user_enumeration'] ) ); ?>>
-									<span class="vigipress-toggle-slider"></span>
+									<span class="vigiguard-toggle-slider"></span>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'Prevents hackers from discovering usernames via /?author=1.', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Prevents hackers from discovering usernames via /?author=1.', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
@@ -165,25 +165,25 @@ settings_errors( 'vigipress_security_messages' );
 				</div>
 			</div>
 			<!-- Security Headers -->
-		<div class="vigipress-card">
-			<div class="vigipress-card-header">
-				<h2><?php esc_html_e( 'Security Headers', 'vigipress-security' ); ?></h2>
+		<div class="vigiguard-card">
+			<div class="vigiguard-card-header">
+				<h2><?php esc_html_e( 'Security Headers', 'vigiguard-security' ); ?></h2>
 			</div>
-			<div class="vigipress-card-body">
+			<div class="vigiguard-card-body">
 				<table class="form-table">
 					<tr>
 						<th scope="row">
 							<label for="enable_security_headers">
-								<?php esc_html_e( 'Enable Security Headers', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Enable Security Headers', 'vigiguard-security' ); ?>
 							</label>
 						</th>
 						<td>
-							<label class="vigipress-toggle">
+							<label class="vigiguard-toggle">
 								<input type="checkbox" name="enable_security_headers" id="enable_security_headers" value="1" <?php checked( ! empty( $this->settings['enable_security_headers'] ) ); ?>>
-								<span class="vigipress-toggle-slider"></span>
+								<span class="vigiguard-toggle-slider"></span>
 							</label>
 							<p class="description">
-								<?php esc_html_e( 'Adds X-Frame-Options, X-XSS-Protection, and other protective headers.', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Adds X-Frame-Options, X-XSS-Protection, and other protective headers.', 'vigiguard-security' ); ?>
 							</p>
 						</td>
 					</tr>
@@ -191,39 +191,39 @@ settings_errors( 'vigipress_security_messages' );
 			</div>
 		</div>
 		<!-- Activity Log Settings -->
-		<div class="vigipress-card">
-			<div class="vigipress-card-header">
-				<h2><?php esc_html_e( 'Activity Logging', 'vigipress-security' ); ?></h2>
+		<div class="vigiguard-card">
+			<div class="vigiguard-card-header">
+				<h2><?php esc_html_e( 'Activity Logging', 'vigiguard-security' ); ?></h2>
 			</div>
-			<div class="vigipress-card-body">
+			<div class="vigiguard-card-body">
 				<table class="form-table">
 					<tr>
 						<th scope="row">
 							<label for="activity_log_enabled">
-								<?php esc_html_e( 'Enable Activity Log', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Enable Activity Log', 'vigiguard-security' ); ?>
 							</label>
 						</th>
 						<td>
-							<label class="vigipress-toggle">
+							<label class="vigiguard-toggle">
 								<input type="checkbox" name="activity_log_enabled" id="activity_log_enabled" value="1" <?php checked( ! empty( $this->settings['activity_log_enabled'] ) ); ?>>
-								<span class="vigipress-toggle-slider"></span>
+								<span class="vigiguard-toggle-slider"></span>
 							</label>
 							<p class="description">
-								<?php esc_html_e( 'Track user logins, failed attempts, and security events.', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Track user logins, failed attempts, and security events.', 'vigiguard-security' ); ?>
 							</p>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">
 							<label for="activity_log_retention">
-								<?php esc_html_e( 'Keep Logs For', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Keep Logs For', 'vigiguard-security' ); ?>
 							</label>
 						</th>
 						<td>
 							<input type="number" name="activity_log_retention" id="activity_log_retention" value="<?php echo esc_attr( $this->settings['activity_log_retention'] ?? 30 ); ?>" min="7" max="365" class="small-text">
-							<?php esc_html_e( 'days', 'vigipress-security' ); ?>
+							<?php esc_html_e( 'days', 'vigiguard-security' ); ?>
 							<p class="description">
-								<?php esc_html_e( 'Older logs will be automatically deleted (7-365 days).', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Older logs will be automatically deleted (7-365 days).', 'vigiguard-security' ); ?>
 							</p>
 						</td>
 					</tr>
@@ -231,38 +231,38 @@ settings_errors( 'vigipress_security_messages' );
 			</div>
 		</div>
 		<!-- File Integrity Settings -->
-		<div class="vigipress-card">
-			<div class="vigipress-card-header">
-				<h2><?php esc_html_e( 'File Integrity Monitoring', 'vigipress-security' ); ?></h2>
+		<div class="vigiguard-card">
+			<div class="vigiguard-card-header">
+				<h2><?php esc_html_e( 'File Integrity Monitoring', 'vigiguard-security' ); ?></h2>
 			</div>
-			<div class="vigipress-card-body">
+			<div class="vigiguard-card-body">
 				<table class="form-table">
 					<tr>
 						<th scope="row">
 							<label for="file_integrity_enabled">
-								<?php esc_html_e( 'Enable File Monitoring', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Enable File Monitoring', 'vigiguard-security' ); ?>
 							</label>
 						</th>
 						<td>
-							<label class="vigipress-toggle">
+							<label class="vigiguard-toggle">
 								<input type="checkbox" name="file_integrity_enabled" id="file_integrity_enabled" value="1" <?php checked( ! empty( $this->settings['file_integrity_enabled'] ) ); ?>>
-								<span class="vigipress-toggle-slider"></span>
+								<span class="vigiguard-toggle-slider"></span>
 							</label>
 							<p class="description">
-								<?php esc_html_e( 'Weekly check for modified WordPress core files.', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Weekly check for modified WordPress core files.', 'vigiguard-security' ); ?>
 							</p>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row">
 							<label for="file_integrity_email">
-								<?php esc_html_e( 'Alert Email', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Alert Email', 'vigiguard-security' ); ?>
 							</label>
 						</th>
 						<td>
 							<input type="email" name="file_integrity_email" id="file_integrity_email" value="<?php echo esc_attr( $this->settings['file_integrity_email'] ?? get_option( 'admin_email' ) ); ?>" class="regular-text">
 							<p class="description">
-								<?php esc_html_e( 'Email address to receive alerts about file changes.', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Email address to receive alerts about file changes.', 'vigiguard-security' ); ?>
 							</p>
 						</td>
 					</tr>
@@ -273,65 +273,65 @@ settings_errors( 'vigipress_security_messages' );
 
 		
 		<!-- Data Management Settings -->
-			<div class="vigipress-card">
-				<div class="vigipress-card-header">
-					<h2><?php esc_html_e( 'Data Management', 'vigipress-security' ); ?></h2>
+			<div class="vigiguard-card">
+				<div class="vigiguard-card-header">
+					<h2><?php esc_html_e( 'Data Management', 'vigiguard-security' ); ?></h2>
 				</div>
-				<div class="vigipress-card-body">
+				<div class="vigiguard-card-body">
 					<table class="form-table">
 						<tr>
 							<th scope="row">
 								<label for="keep_data_on_uninstall">
-									<?php esc_html_e( 'Keep Data on Uninstall', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Keep Data on Uninstall', 'vigiguard-security' ); ?>
 								</label>
 							</th>
 							<td>
 								<?php
-								$keep_data = get_option( 'vigipress_security_keep_data_on_uninstall', false );
+								$keep_data = get_option( 'vigiguard_security_keep_data_on_uninstall', false );
 								?>
-								<label class="vigipress-toggle">
+								<label class="vigiguard-toggle">
 									<input type="checkbox" name="keep_data_on_uninstall" id="keep_data_on_uninstall" value="1" <?php checked( $keep_data ); ?>>
-									<span class="vigipress-toggle-slider"></span>
+									<span class="vigiguard-toggle-slider"></span>
 								</label>
 								<p class="description">
-									<?php esc_html_e( 'If enabled, security logs and data will be preserved when you delete the plugin. Disable for complete removal.', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'If enabled, security logs and data will be preserved when you delete the plugin. Disable for complete removal.', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
-								<?php esc_html_e( 'Reset Plugin', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Reset Plugin', 'vigiguard-security' ); ?>
 							</th>
 							<td>
-								<button type="button" class="button button-secondary vigipress-reset-plugin-btn">
+								<button type="button" class="button button-secondary vigiguard-reset-plugin-btn">
 									<span class="dashicons dashicons-backup"></span>
-									<?php esc_html_e( 'Reset All Settings', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Reset All Settings', 'vigiguard-security' ); ?>
 								</button>
 								<p class="description">
-									<?php esc_html_e( 'Reset all settings to default values. Security logs will be preserved.', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Reset all settings to default values. Security logs will be preserved.', 'vigiguard-security' ); ?>
 								</p>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">
-								<?php esc_html_e( 'Clear Security Logs', 'vigipress-security' ); ?>
+								<?php esc_html_e( 'Clear Security Logs', 'vigiguard-security' ); ?>
 							</th>
 							<td>
 								<?php
 								global $wpdb;
-								$table_name = $wpdb->prefix . 'vigipress_logs';
+								$table_name = $wpdb->prefix . 'vigiguard_logs';
 								// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 								$log_count = $wpdb->get_var( "SELECT COUNT(*) FROM {$table_name}" );
 								?>
-								<button type="button" class="button button-secondary vigipress-clear-logs-btn">
+								<button type="button" class="button button-secondary vigiguard-clear-logs-btn">
 									<span class="dashicons dashicons-trash"></span>
-									<?php esc_html_e( 'Clear All Logs', 'vigipress-security' ); ?>
+									<?php esc_html_e( 'Clear All Logs', 'vigiguard-security' ); ?>
 								</button>
 								<p class="description">
 									<?php
 									printf(
 										/* translators: %s: number of log entries */
-										esc_html__( 'Permanently delete all %s security log entries. This cannot be undone.', 'vigipress-security' ),
+										esc_html__( 'Permanently delete all %s security log entries. This cannot be undone.', 'vigiguard-security' ),
 										'<strong>' . esc_html( number_format_i18n( $log_count ) ) . '</strong>'
 									);
 									?>
@@ -342,32 +342,32 @@ settings_errors( 'vigipress_security_messages' );
 
 					<?php
 					// Show data removal preview.
-					$stats = \VigiPress_Security\VigiPress_Uninstaller::get_removal_stats();
+					$stats = \VigiGuard_Security\VigiGuard_Uninstaller::get_removal_stats();
 					?>
-					<div class="vigipress-data-preview" style="margin-top: 30px; padding: 15px; background: #f9fafb; border-left: 4px solid #3b82f6; border-radius: 4px;">
-						<h3 style="margin-top: 0;"><?php esc_html_e( 'Data Removal Preview', 'vigipress-security' ); ?></h3>
-						<p><?php esc_html_e( 'If you delete this plugin, the following data will be removed:', 'vigipress-security' ); ?></p>
+					<div class="vigiguard-data-preview" style="margin-top: 30px; padding: 15px; background: #f9fafb; border-left: 4px solid #3b82f6; border-radius: 4px;">
+						<h3 style="margin-top: 0;"><?php esc_html_e( 'Data Removal Preview', 'vigiguard-security' ); ?></h3>
+						<p><?php esc_html_e( 'If you delete this plugin, the following data will be removed:', 'vigiguard-security' ); ?></p>
 						<ul style="margin-left: 20px;">
 							<li><?php 
 							/* translators: %d: number of plugin settings */
-							printf( esc_html__( '%d plugin settings', 'vigipress-security' ), esc_html( $stats['options'] ) ); ?></li>
+							printf( esc_html__( '%d plugin settings', 'vigiguard-security' ), esc_html( $stats['options'] ) ); ?></li>
 							<li><?php 
 							/* translators: %d: number of security log entries */
-							printf( esc_html__( '%d security log entries', 'vigipress-security' ), esc_html( number_format_i18n( $stats['logs'] ) ) ); ?></li>
+							printf( esc_html__( '%d security log entries', 'vigiguard-security' ), esc_html( number_format_i18n( $stats['logs'] ) ) ); ?></li>
 							<li><?php 
 							/* translators: %d: number of user preferences */
-							printf( esc_html__( '%d user preferences', 'vigipress-security' ), esc_html( $stats['user_meta'] ) ); ?></li>
+							printf( esc_html__( '%d user preferences', 'vigiguard-security' ), esc_html( $stats['user_meta'] ) ); ?></li>
 							<li><?php 
 							/* translators: %d: number of temporary cache entries */
-							printf( esc_html__( '%d temporary cache entries', 'vigipress-security' ), esc_html( $stats['transients'] ) ); ?></li>
+							printf( esc_html__( '%d temporary cache entries', 'vigiguard-security' ), esc_html( $stats['transients'] ) ); ?></li>
 						</ul>
 						<p>
 							<b>
 								<?php
 								if ( $keep_data ) {
-									esc_html_e( 'Note: Data retention is ENABLED. Security logs will be preserved.', 'vigipress-security' );
+									esc_html_e( 'Note: Data retention is ENABLED. Security logs will be preserved.', 'vigiguard-security' );
 								} else {
-									esc_html_e( 'Note: Data retention is DISABLED. All data will be permanently deleted.', 'vigipress-security' );
+									esc_html_e( 'Note: Data retention is DISABLED. All data will be permanently deleted.', 'vigiguard-security' );
 								}
 								?>
 							</b>
@@ -380,7 +380,7 @@ settings_errors( 'vigipress_security_messages' );
 		<p class="submit">
 			<button type="submit" class="button button-primary button-large">
 				<span class="dashicons dashicons-yes"></span>
-				<?php esc_html_e( 'Save All Settings', 'vigipress-security' ); ?>
+				<?php esc_html_e( 'Save All Settings', 'vigiguard-security' ); ?>
 			</button>
 		</p>
 	</form>

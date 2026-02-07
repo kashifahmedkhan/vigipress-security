@@ -5,12 +5,12 @@
  * This is used to define internationalization, admin-specific hooks,
  * and module initialization.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/includes
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/includes
  * @since      1.0.0
  */
 
-namespace VigiPress_Security;
+namespace VigiGuard_Security;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This is used to define admin hooks and module initialization.
  */
-class VigiPress_Core {
+class VigiGuard_Core {
 
 	/**
 	 * The unique identifier of this plugin.
@@ -57,7 +57,7 @@ class VigiPress_Core {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->plugin_name = 'vigipress-security';
+		$this->plugin_name = 'vigiguard-security';
 		$this->version     = VIGIL_SECURITY_VERSION;
 
 		$this->load_dependencies();
@@ -76,7 +76,7 @@ class VigiPress_Core {
 		$hardening_file        = VIGIL_SECURITY_PATH . 'includes/modules/class-hardening.php';
 
 		$file_integrity_file   = VIGIL_SECURITY_PATH . 'includes/modules/class-file-integrity.php';
-		$uninstaller_file      = VIGIL_SECURITY_PATH . 'includes/class-vigipress-uninstaller.php';  // Add this line
+		$uninstaller_file      = VIGIL_SECURITY_PATH . 'includes/class-vigiguard-uninstaller.php';  // Add this line
 
 		$file_integrity_file   = VIGIL_SECURITY_PATH . 'includes/modules/class-file-integrity.php';  
 		
@@ -103,7 +103,7 @@ class VigiPress_Core {
 
 
 		// Load admin class.
-		require_once VIGIL_SECURITY_PATH . 'admin/class-vigipress-admin.php';
+		require_once VIGIL_SECURITY_PATH . 'admin/class-vigiguard-admin.php';
 	}
 
 	/**
@@ -121,7 +121,7 @@ class VigiPress_Core {
 
 		// Initialize admin class.
 		if ( is_admin() ) {
-			$admin = new \VigiPress_Security\Admin\VigiPress_Admin( $this->plugin_name, $this->version );
+			$admin = new \VigiGuard_Security\Admin\VigiGuard_Admin( $this->plugin_name, $this->version );
 			add_action( 'admin_menu', array( $admin, 'add_admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_scripts' ) );
@@ -135,12 +135,12 @@ class VigiPress_Core {
 	 */
 	public function show_activation_notice() {
 		// Only show if activation transient exists.
-		if ( ! get_transient( 'vigipress_security_activated' ) ) {
+		if ( ! get_transient( 'vigiguard_security_activated' ) ) {
 			return;
 		}
 
 		// Delete transient so notice only shows once.
-		delete_transient( 'vigipress_security_activated' );
+		delete_transient( 'vigiguard_security_activated' );
 
 		// Only show to admins.
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -150,10 +150,10 @@ class VigiPress_Core {
 		?>
 		<div class="notice notice-success is-dismissible">
 			<p>
-				<strong><?php esc_html_e( 'VigiPress Security is now active!', 'vigipress-security' ); ?></strong>
+				<strong><?php esc_html_e( 'VigiGuard Security is now active!', 'vigiguard-security' ); ?></strong>
 			</p>
 			<p>
-				<?php esc_html_e( 'Your site is currently running with default (safe) security settings. The Security Dashboard will be available shortly.', 'vigipress-security' ); ?>
+				<?php esc_html_e( 'Your site is currently running with default (safe) security settings. The Security Dashboard will be available shortly.', 'vigiguard-security' ); ?>
 			</p>
 		</div>
 		<?php
@@ -167,7 +167,7 @@ class VigiPress_Core {
 	 * @return array Modified plugin action links.
 	 */
 	public function add_action_links( $links ) {
-		$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=vigipress-security' ) ) . '">' . esc_html__( 'Settings', 'vigipress-security' ) . '</a>';
+		$settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=vigiguard-security' ) ) . '">' . esc_html__( 'Settings', 'vigiguard-security' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}
@@ -189,18 +189,18 @@ class VigiPress_Core {
 	 */
 	private function init_modules() {
 		// Initialize login protection (only if class exists).
-		if ( class_exists( '\VigiPress_Security\Modules\Login_Protection' ) ) {
-			new \VigiPress_Security\Modules\Login_Protection();
+		if ( class_exists( '\VigiGuard_Security\Modules\Login_Protection' ) ) {
+			new \VigiGuard_Security\Modules\Login_Protection();
 		}
 
 		// Initialize hardening (only if class exists).
-		if ( class_exists( '\VigiPress_Security\Modules\Hardening' ) ) {
-			new \VigiPress_Security\Modules\Hardening();
+		if ( class_exists( '\VigiGuard_Security\Modules\Hardening' ) ) {
+			new \VigiGuard_Security\Modules\Hardening();
 		}
 
 		// Initialize file integrity (only if class exists).  // Add this
-		if ( class_exists( '\VigiPress_Security\Modules\File_Integrity' ) ) {
-			new \VigiPress_Security\Modules\File_Integrity();
+		if ( class_exists( '\VigiGuard_Security\Modules\File_Integrity' ) ) {
+			new \VigiGuard_Security\Modules\File_Integrity();
 		}
 	}
 
@@ -234,13 +234,13 @@ class VigiPress_Core {
 
 		// Block ?author=N queries.
 		if ( preg_match( '/author=([0-9]*)/i', $request_uri ) ) {
-			wp_die( esc_html__( 'Forbidden', 'vigipress-security' ), 403 );
+			wp_die( esc_html__( 'Forbidden', 'vigiguard-security' ), 403 );
 		}
 
 		// Also block REST API user endpoints.
 		global $wp;
 		if ( isset( $wp->query_vars['rest_route'] ) && strpos( $wp->query_vars['rest_route'], '/wp/v2/users' ) !== false ) {
-			wp_die( esc_html__( 'Forbidden', 'vigipress-security' ), 403 );
+			wp_die( esc_html__( 'Forbidden', 'vigiguard-security' ), 403 );
 		}
 	}
 

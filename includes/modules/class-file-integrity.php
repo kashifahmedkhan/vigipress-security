@@ -4,13 +4,13 @@
  *
  * Monitors WordPress core files for unauthorized changes.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/includes/modules
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/includes/modules
  * @since      1.0.0
  * 
  */
 
-namespace VigiPress_Security\Modules;
+namespace VigiGuard_Security\Modules;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +39,7 @@ class File_Integrity {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->settings = get_option( 'vigipress_security_settings', array() );
+		$this->settings = get_option( 'vigiguard_security_settings', array() );
 
 		// Only initialize if file integrity is enabled.
 		if ( ! empty( $this->settings['file_integrity_enabled'] ) ) {
@@ -54,7 +54,7 @@ class File_Integrity {
 	 */
 	private function init_hooks() {
 		// Hook into the weekly cron job.
-		add_action( 'vigipress_security_weekly_file_check', array( $this, 'run_file_check' ) );
+		add_action( 'vigiguard_security_weekly_file_check', array( $this, 'run_file_check' ) );
 	}
 
 	/**
@@ -88,13 +88,13 @@ class File_Integrity {
 				$this->get_server_ip(),
 				sprintf(
 					/* translators: %s: WordPress version */
-					__( 'Failed to retrieve WordPress checksums for version %s', 'vigipress-security' ),
+					__( 'Failed to retrieve WordPress checksums for version %s', 'vigiguard-security' ),
 					$wp_version
 				),
 				'warning'
 			);
 			return array( 
-				'error'   => __( 'Could not retrieve checksums', 'vigipress-security' ),
+				'error'   => __( 'Could not retrieve checksums', 'vigiguard-security' ),
 				'checked' => 0,
 				'modified' => array(),
 				'unexpected' => array(),
@@ -105,7 +105,7 @@ class File_Integrity {
 		$results = $this->check_core_files( $checksums );
 
 		// Store results
-		update_option( 'vigipress_last_file_check', array(
+		update_option( 'vigiguard_last_file_check', array(
 			'timestamp' => current_time( 'timestamp' ),
 			'results'   => $results,
 			'version'   => $wp_version,
@@ -124,7 +124,7 @@ class File_Integrity {
 			$this->get_server_ip(),
 			sprintf(
 				/* translators: 1: files checked, 2: modified count, 3: unexpected count */
-				__( 'File integrity check completed. Checked: %1$d, Modified: %2$d, Unexpected: %3$d', 'vigipress-security' ),
+				__( 'File integrity check completed. Checked: %1$d, Modified: %2$d, Unexpected: %3$d', 'vigiguard-security' ),
 				$results['checked'],
 				count( $results['modified'] ),
 				count( $results['unexpected'] )
@@ -266,16 +266,16 @@ class File_Integrity {
 		$to      = ! empty( $this->settings['file_integrity_email'] ) ? $this->settings['file_integrity_email'] : get_option( 'admin_email' );
 		$subject = sprintf(
 			/* translators: %s: site name */
-			__( '[%s] Security Alert: File Integrity Issues Detected', 'vigipress-security' ),
+			__( '[%s] Security Alert: File Integrity Issues Detected', 'vigiguard-security' ),
 			get_bloginfo( 'name' )
 		);
 
-		$message = __( "VigiPress Security has detected changes to your WordPress core files.\n\n", 'vigipress-security' );
+		$message = __( "VigiGuard Security has detected changes to your WordPress core files.\n\n", 'vigiguard-security' );
 
 		if ( ! empty( $results['modified'] ) ) {
 			$message .= sprintf(
 				/* translators: %d: number of modified files */
-				__( "Modified Core Files (%d):\n", 'vigipress-security' ),
+				__( "Modified Core Files (%d):\n", 'vigiguard-security' ),
 				count( $results['modified'] )
 			);
 			foreach ( array_slice( $results['modified'], 0, 10 ) as $file ) {
@@ -284,7 +284,7 @@ class File_Integrity {
 			if ( count( $results['modified'] ) > 10 ) {
 				$message .= sprintf(
 					/* translators: %d: number of additional files */
-					__( "...and %d more files\n", 'vigipress-security' ),
+					__( "...and %d more files\n", 'vigiguard-security' ),
 					count( $results['modified'] ) - 10
 				);
 			}
@@ -294,7 +294,7 @@ class File_Integrity {
 		if ( ! empty( $results['unexpected'] ) ) {
 			$message .= sprintf(
 				/* translators: %d: number of unexpected files */
-				__( "Unexpected Files (%d):\n", 'vigipress-security' ),
+				__( "Unexpected Files (%d):\n", 'vigiguard-security' ),
 				count( $results['unexpected'] )
 			);
 			foreach ( array_slice( $results['unexpected'], 0, 10 ) as $file ) {
@@ -303,24 +303,24 @@ class File_Integrity {
 			if ( count( $results['unexpected'] ) > 10 ) {
 				$message .= sprintf(
 					/* translators: %d: number of additional files */
-					__( "...and %d more files\n", 'vigipress-security' ),
+					__( "...and %d more files\n", 'vigiguard-security' ),
 					count( $results['unexpected'] ) - 10
 				);
 			}
 			$message .= "\n";
 		}
 
-		$message .= __( "What this means:\n", 'vigipress-security' );
-		$message .= __( "- Modified files may indicate a hack or plugin conflict\n", 'vigipress-security' );
-		$message .= __( "- Unexpected files could be malware injections\n\n", 'vigipress-security' );
-		$message .= __( "Recommended actions:\n", 'vigipress-security' );
-		$message .= __( "1. Check your WordPress admin dashboard for updates\n", 'vigipress-security' );
-		$message .= __( "2. Review the files listed above\n", 'vigipress-security' );
-		$message .= __( "3. Consider reinstalling WordPress core files\n\n", 'vigipress-security' );
+		$message .= __( "What this means:\n", 'vigiguard-security' );
+		$message .= __( "- Modified files may indicate a hack or plugin conflict\n", 'vigiguard-security' );
+		$message .= __( "- Unexpected files could be malware injections\n\n", 'vigiguard-security' );
+		$message .= __( "Recommended actions:\n", 'vigiguard-security' );
+		$message .= __( "1. Check your WordPress admin dashboard for updates\n", 'vigiguard-security' );
+		$message .= __( "2. Review the files listed above\n", 'vigiguard-security' );
+		$message .= __( "3. Consider reinstalling WordPress core files\n\n", 'vigiguard-security' );
 		$message .= sprintf(
 			/* translators: %s: admin URL */
-			__( "View full report: %s\n", 'vigipress-security' ),
-			admin_url( 'admin.php?page=vigipress-security' )
+			__( "View full report: %s\n", 'vigiguard-security' ),
+			admin_url( 'admin.php?page=vigiguard-security' )
 		);
 
 		// Send email.
@@ -334,7 +334,7 @@ class File_Integrity {
 	 * @return array|false Last check results or false if never run.
 	 */
 	public function get_last_check_results() {
-		return get_option( 'vigipress_last_file_check', false );
+		return get_option( 'vigiguard_last_file_check', false );
 	}
 
 	/**
@@ -368,7 +368,7 @@ class File_Integrity {
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'vigipress_logs';
+		$table_name = $wpdb->prefix . 'vigiguard_logs';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->insert(

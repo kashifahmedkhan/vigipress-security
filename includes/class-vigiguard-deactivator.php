@@ -4,19 +4,19 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/includes
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/includes
  * @since      1.0.0
  */
 
-namespace VigiPress_Security;
+namespace VigiGuard_Security;
 
 /**
  * Fired during plugin deactivation.
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  */
-class VigiPress_Deactivator {
+class VigiGuard_Deactivator {
 
 	/**
 	 * Deactivate the plugin.
@@ -44,15 +44,15 @@ class VigiPress_Deactivator {
 	 */
 	private static function clear_cron_jobs() {
 		// Clear daily cleanup job.
-		$timestamp = wp_next_scheduled( 'vigipress_security_daily_cleanup' );
+		$timestamp = wp_next_scheduled( 'vigiguard_security_daily_cleanup' );
 		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, 'vigipress_security_daily_cleanup' );
+			wp_unschedule_event( $timestamp, 'vigiguard_security_daily_cleanup' );
 		}
 
 		// Clear weekly file check job.
-		$timestamp = wp_next_scheduled( 'vigipress_security_weekly_file_check' );
+		$timestamp = wp_next_scheduled( 'vigiguard_security_weekly_file_check' );
 		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, 'vigipress_security_weekly_file_check' );
+			wp_unschedule_event( $timestamp, 'vigiguard_security_weekly_file_check' );
 		}
 	}
 
@@ -64,7 +64,7 @@ class VigiPress_Deactivator {
 	private static function log_deactivation_event() {
 		global $wpdb;
 
-		$table_name = $wpdb->prefix . 'vigipress_logs';
+		$table_name = $wpdb->prefix . 'vigiguard_logs';
 
 		// Check if table exists before trying to log.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -89,7 +89,7 @@ class VigiPress_Deactivator {
 				'user_id'     => $user->ID,
 				'username'    => $user->user_login,
 				'ip_address'  => self::get_user_ip(),
-				'description' => 'VigiPress Security plugin was deactivated',
+				'description' => 'VigiGuard Security plugin was deactivated',
 				'severity'    => 'warning',
 				'created_at'  => current_time( 'mysql' ),
 			),

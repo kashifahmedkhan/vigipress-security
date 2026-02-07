@@ -1,10 +1,10 @@
-Copyright (C) 2026 VigiPress Security Team
+Copyright (C) 2026 VigiGuard Security Team
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: VigiPress Security 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugins/vigipress-security\n"
-"Last-Translator: VigiPress Security Team\n"
+"Project-Id-Version: VigiGuard Security 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugins/vigiguard-security\n"
+"Last-Translator: VigiGuard Security Team\n"
 "Language-Team: English <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,213 +12,213 @@ msgstr ""
 "POT-Creation-Date: 2026-01-28T18:30:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: vigipress-security\n"
+"X-Domain: vigiguard-security\n"
 
 #. Plugin Name of the plugin
-#: vigipress-security.php
-#: admin/class-vigipress-admin.php:81
-#: admin/class-vigipress-admin.php:82
-msgid "VigiPress Security"
+#: vigiguard-security.php
+#: admin/class-vigiguard-admin.php:81
+#: admin/class-vigiguard-admin.php:82
+msgid "VigiGuard Security"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: vigipress-security.php
-msgid "https://wordpress.org/plugins/vigipress-security"
+#: vigiguard-security.php
+msgid "https://wordpress.org/plugins/vigiguard-security"
 msgstr ""
 
 #. Description of the plugin
-#: vigipress-security.php
+#: vigiguard-security.php
 msgid "Simple, one-click WordPress security hardening for non-technical users. Protect your site without reading a manual."
 msgstr ""
 
 #. Author of the plugin
-#: vigipress-security.php
+#: vigiguard-security.php
 msgid "Kashif"
 msgstr ""
 
 #. Author URI of the plugin
-#: vigipress-security.php
+#: vigiguard-security.php
 msgid "https://profiles.wordpress.org/kashifahmedkhan/"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:93
-#: admin/class-vigipress-admin.php:94
+#: admin/class-vigiguard-admin.php:93
+#: admin/class-vigiguard-admin.php:94
 msgid "Dashboard"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:102
-#: admin/class-vigipress-admin.php:103
-#: includes/class-vigipress-core.php:189
+#: admin/class-vigiguard-admin.php:102
+#: admin/class-vigiguard-admin.php:103
+#: includes/class-vigiguard-core.php:189
 msgid "Settings"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:111
-#: admin/class-vigipress-admin.php:112
+#: admin/class-vigiguard-admin.php:111
+#: admin/class-vigiguard-admin.php:112
 #: admin/views/logs.php:20
 msgid "Activity Log"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:179
-#: admin/class-vigipress-admin.php:206
-#: admin/class-vigipress-admin.php:247
+#: admin/class-vigiguard-admin.php:179
+#: admin/class-vigiguard-admin.php:206
+#: admin/class-vigiguard-admin.php:247
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin/class-vigipress-admin.php:228
+#: admin/class-vigiguard-admin.php:228
 msgid "Security Headers Active!"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:229
+#: admin/class-vigiguard-admin.php:229
 msgid "Security headers are being sent on all frontend pages. To verify, open your homepage (not admin) and check browser DevTools → Network → Response Headers."
 msgstr ""
 
-#: admin/class-vigipress-admin.php:343
+#: admin/class-vigiguard-admin.php:343
 msgid "Excellent"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:349
+#: admin/class-vigiguard-admin.php:349
 msgid "Good"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:355
+#: admin/class-vigiguard-admin.php:355
 msgid "Fair"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:361
+#: admin/class-vigiguard-admin.php:361
 msgid "Poor"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:367
+#: admin/class-vigiguard-admin.php:367
 msgid "Critical"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:384
+#: admin/class-vigiguard-admin.php:384
 msgid "XML-RPC is enabled"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:385
+#: admin/class-vigiguard-admin.php:385
 msgid "This can be exploited for brute force attacks"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:393
+#: admin/class-vigiguard-admin.php:393
 msgid "File editing is enabled"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:394
+#: admin/class-vigiguard-admin.php:394
 msgid "Hackers can modify your theme/plugin files"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:402
+#: admin/class-vigiguard-admin.php:402
 msgid "Login protection is disabled"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:403
+#: admin/class-vigiguard-admin.php:403
 msgid "Your site is vulnerable to brute force attacks"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:411
+#: admin/class-vigiguard-admin.php:411
 msgid "WordPress version is visible"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:412
+#: admin/class-vigiguard-admin.php:412
 msgid "Attackers can target known vulnerabilities"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:420
+#: admin/class-vigiguard-admin.php:420
 msgid "SSL is not enforced on admin"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:421
+#: admin/class-vigiguard-admin.php:421
 msgid "Your login credentials can be intercepted"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:430
+#: admin/class-vigiguard-admin.php:430
 msgid "Database uses default prefix"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:431
+#: admin/class-vigiguard-admin.php:431
 msgid "Makes SQL injection attacks easier"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:473
+#: admin/class-vigiguard-admin.php:473
 msgid "Security check failed. Please try again."
 msgstr ""
 
-#: admin/class-vigipress-admin.php:528
+#: admin/class-vigiguard-admin.php:528
 msgid "Settings saved successfully!"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:547
-#: admin/class-vigipress-admin.php:670
-#: admin/class-vigipress-admin.php:735
-#: admin/class-vigipress-admin.php:775
-#: admin/class-vigipress-admin.php:812
-#: admin/class-vigipress-admin.php:875
+#: admin/class-vigiguard-admin.php:547
+#: admin/class-vigiguard-admin.php:670
+#: admin/class-vigiguard-admin.php:735
+#: admin/class-vigiguard-admin.php:775
+#: admin/class-vigiguard-admin.php:812
+#: admin/class-vigiguard-admin.php:875
 msgid "Unauthorized"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:581
+#: admin/class-vigiguard-admin.php:581
 msgid "All security issues have been fixed!"
 msgstr ""
 
 #. translators: 1: old score, 2: new score
-#: admin/class-vigipress-admin.php:616
+#: admin/class-vigiguard-admin.php:616
 #, php-format
 msgid "Applied all security fixes. Health score improved from %1$d to %2$d."
 msgstr ""
 
-#: admin/class-vigipress-admin.php:677
+#: admin/class-vigiguard-admin.php:677
 msgid "Invalid notice ID"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:685
+#: admin/class-vigiguard-admin.php:685
 msgid "Notice dismissed"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:742
+#: admin/class-vigiguard-admin.php:742
 msgid "Invalid IP address"
 msgstr ""
 
 #. translators: %s: IP address
-#: admin/class-vigipress-admin.php:754
+#: admin/class-vigiguard-admin.php:754
 #, php-format
 msgid "IP address %s has been unlocked."
 msgstr ""
 
-#: admin/class-vigipress-admin.php:761
+#: admin/class-vigiguard-admin.php:761
 msgid "Failed to unlock IP address"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:788
+#: admin/class-vigiguard-admin.php:788
 msgid "File integrity scan completed!"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:795
+#: admin/class-vigiguard-admin.php:795
 msgid "File integrity module not available"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:849
+#: admin/class-vigiguard-admin.php:849
 msgid "Plugin settings reset to defaults"
 msgstr ""
 
-#: admin/class-vigipress-admin.php:857
+#: admin/class-vigiguard-admin.php:857
 msgid "Plugin settings have been reset to defaults."
 msgstr ""
 
 #. translators: %d: number of deleted logs
-#: admin/class-vigipress-admin.php:902
+#: admin/class-vigiguard-admin.php:902
 #, php-format
 msgid "Cleared %d security log entries"
 msgstr ""
 
 #. translators: %d: number of deleted logs
-#: admin/class-vigipress-admin.php:914
+#: admin/class-vigiguard-admin.php:914
 #, php-format
 msgid "%d security log entries have been cleared."
 msgstr ""
 
 #: admin/views/dashboard.php:19
-msgid "VigiPress Security Dashboard"
+msgid "VigiGuard Security Dashboard"
 msgstr ""
 
 #: admin/views/dashboard.php:26
@@ -380,7 +380,7 @@ msgid "No activity logs found."
 msgstr ""
 
 #: admin/views/settings.php:23
-msgid "VigiPress Security Settings"
+msgid "VigiGuard Security Settings"
 msgstr ""
 
 #: admin/views/settings.php:40
@@ -595,23 +595,23 @@ msgstr ""
 msgid "Save All Settings"
 msgstr ""
 
-#: includes/class-vigipress-core.php:172
-msgid "VigiPress Security is now active!"
+#: includes/class-vigiguard-core.php:172
+msgid "VigiGuard Security is now active!"
 msgstr ""
 
-#: includes/class-vigipress-core.php:175
+#: includes/class-vigiguard-core.php:175
 msgid "Your site is currently running with default (safe) security settings. The Security Dashboard will be available shortly."
 msgstr ""
 
-#: includes/class-vigipress-core.php:256
-#: includes/class-vigipress-core.php:262
+#: includes/class-vigiguard-core.php:256
+#: includes/class-vigiguard-core.php:262
 #: includes/modules/class-hardening.php:120
 #: includes/modules/class-hardening.php:142
 msgid "Forbidden"
 msgstr ""
 
 #. translators: %s: uninstall type
-#: includes/class-vigipress-uninstaller.php:171
+#: includes/class-vigiguard-uninstaller.php:171
 #, php-format
 msgid "Plugin uninstalled (%s cleanup)"
 msgstr ""
@@ -640,7 +640,7 @@ msgstr ""
 
 #: includes/modules/class-file-integrity.php:268
 msgid ""
-"VigiPress Security has detected changes to your WordPress core files.\n"
+"VigiGuard Security has detected changes to your WordPress core files.\n"
 "\n"
 ""
 msgstr ""
@@ -790,7 +790,7 @@ msgstr ""
 #: includes/modules/class-login-protection.php:279
 #, php-format
 msgid ""
-"Security Alert from VigiPress Security\n"
+"Security Alert from VigiGuard Security\n"
 "\n"
 "An IP address has been locked out due to too many failed login attempts.\n"
 "\n"
@@ -800,7 +800,7 @@ msgid ""
 "- Failed Attempts: %3$d\n"
 "- Lockout Duration: %4$d minutes\n"
 "\n"
-"This is an automated message from VigiPress Security plugin.\n"
+"This is an automated message from VigiGuard Security plugin.\n"
 "If you did not attempt to log in, your site may be under attack.\n"
 "\n"
 "To view all security events, visit your WordPress admin dashboard."
@@ -813,13 +813,13 @@ msgid "Manually unlocked IP: %s"
 msgstr ""
 
 #. translators: 1: Required WordPress version, 2: Current WordPress version
-#: vigipress-security.php:88
+#: vigiguard-security.php:88
 #, php-format
-msgid "VigiPress Security requires WordPress version %1$s or higher. You are running version %2$s. Please upgrade WordPress."
+msgid "VigiGuard Security requires WordPress version %1$s or higher. You are running version %2$s. Please upgrade WordPress."
 msgstr ""
 
 #. translators: 1: Required PHP version, 2: Current PHP version
-#: vigipress-security.php:108
+#: vigiguard-security.php:108
 #, php-format
-msgid "VigiPress Security requires PHP version %1$s or higher. You are running version %2$s. Please contact your hosting provider."
+msgid "VigiGuard Security requires PHP version %1$s or higher. You are running version %2$s. Please contact your hosting provider."
 msgstr ""

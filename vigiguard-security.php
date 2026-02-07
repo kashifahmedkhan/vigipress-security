@@ -1,19 +1,19 @@
 <?php
 /**
- * Plugin Name:       VigiPress Security
- * Plugin URI:        https://wordpress.org/plugins/vigipress-security
+ * Plugin Name:       VigiGuard Security
+ * Plugin URI:        https://wordpress.org/plugins/vigiguard-security
  * Description:       Simple, one-click WordPress security hardening for non-technical users. Protect your site without reading a manual.
  * Version:           1.0.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
- * Author:            VigiPress Security Team
+ * Author:            VigiGuard Security Team
  * Author URI:        https://profiles.wordpress.org/kashifahmedkhan/
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       vigipress-security
+ * Text Domain:       vigiguard-security
  * Domain Path:       /languages
  *
- * @package VigiPress_Security
+ * @package VigiGuard_Security
  * @since      1.0.0
  * 
  */
@@ -57,18 +57,18 @@ define( 'VIGIL_SECURITY_MIN_PHP_VERSION', '7.4' );
 /**
  * Check WordPress and PHP version compatibility before loading plugin.
  */
-function vigipress_security_check_requirements() {
+function vigiguard_security_check_requirements() {
 	global $wp_version;
 
 	// Check WordPress version.
 	if ( version_compare( $wp_version, VIGIL_SECURITY_MIN_WP_VERSION, '<' ) ) {
-		add_action( 'admin_notices', 'vigipress_security_wp_version_notice' );
+		add_action( 'admin_notices', 'vigiguard_security_wp_version_notice' );
 		return false;
 	}
 
 	// Check PHP version.
 	if ( version_compare( PHP_VERSION, VIGIL_SECURITY_MIN_PHP_VERSION, '<' ) ) {
-		add_action( 'admin_notices', 'vigipress_security_php_version_notice' );
+		add_action( 'admin_notices', 'vigiguard_security_php_version_notice' );
 		return false;
 	}
 
@@ -78,14 +78,14 @@ function vigipress_security_check_requirements() {
 /**
  * Display WordPress version incompatibility notice.
  */
-function vigipress_security_wp_version_notice() {
+function vigiguard_security_wp_version_notice() {
 	?>
 	<div class="notice notice-error">
 		<p>
 			<?php
 			printf(
 				/* translators: 1: Required WordPress version, 2: Current WordPress version */
-				esc_html__( 'VigiPress Security requires WordPress version %1$s or higher. You are running version %2$s. Please upgrade WordPress.', 'vigipress-security' ),
+				esc_html__( 'VigiGuard Security requires WordPress version %1$s or higher. You are running version %2$s. Please upgrade WordPress.', 'vigiguard-security' ),
 				esc_html( VIGIL_SECURITY_MIN_WP_VERSION ),
 				esc_html( $GLOBALS['wp_version'] )
 			);
@@ -98,14 +98,14 @@ function vigipress_security_wp_version_notice() {
 /**
  * Display PHP version incompatibility notice.
  */
-function vigipress_security_php_version_notice() {
+function vigiguard_security_php_version_notice() {
 	?>
 	<div class="notice notice-error">
 		<p>
 			<?php
 			printf(
 				/* translators: 1: Required PHP version, 2: Current PHP version */
-				esc_html__( 'VigiPress Security requires PHP version %1$s or higher. You are running version %2$s. Please contact your hosting provider.', 'vigipress-security' ),
+				esc_html__( 'VigiGuard Security requires PHP version %1$s or higher. You are running version %2$s. Please contact your hosting provider.', 'vigiguard-security' ),
 				esc_html( VIGIL_SECURITY_MIN_PHP_VERSION ),
 				esc_html( PHP_VERSION )
 			);
@@ -118,33 +118,33 @@ function vigipress_security_php_version_notice() {
 /**
  * Only proceed if requirements are met.
  */
-if ( ! vigipress_security_check_requirements() ) {
+if ( ! vigiguard_security_check_requirements() ) {
 	return;
 }
 
 /**
  * The code that runs during plugin activation.
  */
-function vigipress_security_activate() {
-	require_once VIGIL_SECURITY_PATH . 'includes/class-vigipress-activator.php';
-	VigiPress_Security\VigiPress_Activator::activate();
+function vigiguard_security_activate() {
+	require_once VIGIL_SECURITY_PATH . 'includes/class-vigiguard-activator.php';
+	VigiGuard_Security\VigiGuard_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  */
-function vigipress_security_deactivate() {
-	require_once VIGIL_SECURITY_PATH . 'includes/class-vigipress-deactivator.php';
-	VigiPress_Security\VigiPress_Deactivator::deactivate();
+function vigiguard_security_deactivate() {
+	require_once VIGIL_SECURITY_PATH . 'includes/class-vigiguard-deactivator.php';
+	VigiGuard_Security\VigiGuard_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'vigipress_security_activate' );
-register_deactivation_hook( __FILE__, 'vigipress_security_deactivate' );
+register_activation_hook( __FILE__, 'vigiguard_security_activate' );
+register_deactivation_hook( __FILE__, 'vigiguard_security_deactivate' );
 
 /**
  * The core plugin class.
  */
-require_once VIGIL_SECURITY_PATH . 'includes/class-vigipress-core.php';
+require_once VIGIL_SECURITY_PATH . 'includes/class-vigiguard-core.php';
 
 
 /**
@@ -154,9 +154,9 @@ require_once VIGIL_SECURITY_PATH . 'includes/class-vigipress-core.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  */
-function vigipress_security_run() {
-	$plugin = new VigiPress_Security\VigiPress_Core();
+function vigiguard_security_run() {
+	$plugin = new VigiGuard_Security\VigiGuard_Core();
 	$plugin->run();
 }
 
-vigipress_security_run();
+vigiguard_security_run();

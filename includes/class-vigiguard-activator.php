@@ -4,19 +4,19 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/includes
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/includes
  * @since      1.0.0
  */
 
-namespace VigiPress_Security;
+namespace VigiGuard_Security;
 
 /**
  * Fired during plugin activation.
  *
  * This class defines all code necessary to run during the plugin's activation.
  */
-class VigiPress_Activator {
+class VigiGuard_Activator {
 
 	/**
 	 * Activate the plugin.
@@ -36,7 +36,7 @@ class VigiPress_Activator {
 		self::schedule_cron_jobs();
 
 		// Set activation flag (for showing welcome message).
-		set_transient( 'vigipress_security_activated', true, 60 );
+		set_transient( 'vigiguard_security_activated', true, 60 );
 
 		// Flush rewrite rules (in case we add custom endpoints later).
 		flush_rewrite_rules();
@@ -51,7 +51,7 @@ class VigiPress_Activator {
 		global $wpdb;
 
 		$charset_collate = $wpdb->get_charset_collate();
-		$table_name      = $wpdb->prefix . 'vigipress_logs';
+		$table_name      = $wpdb->prefix . 'vigiguard_logs';
 
 		// SQL to create logs table.
 		$sql = "CREATE TABLE IF NOT EXISTS $table_name (
@@ -73,7 +73,7 @@ class VigiPress_Activator {
 		dbDelta( $sql );
 
 		// Store database version for future migrations.
-		update_option( 'vigipress_security_db_version', '1.0.0' );
+		update_option( 'vigiguard_security_db_version', '1.0.0' );
 	}
 
 	/**
@@ -111,8 +111,8 @@ class VigiPress_Activator {
 		);
 
 		// Only add if not already exists (prevents overwriting on reactivation).
-		if ( ! get_option( 'vigipress_security_settings' ) ) {
-			add_option( 'vigipress_security_settings', $default_settings );
+		if ( ! get_option( 'vigiguard_security_settings' ) ) {
+			add_option( 'vigiguard_security_settings', $default_settings );
 		}
 
 		// Log the activation.
@@ -126,13 +126,13 @@ class VigiPress_Activator {
 	 */
 	private static function schedule_cron_jobs() {
 		// Schedule daily log cleanup (runs at 3 AM).
-		if ( ! wp_next_scheduled( 'vigipress_security_daily_cleanup' ) ) {
-			wp_schedule_event( strtotime( 'tomorrow 3:00am' ), 'daily', 'vigipress_security_daily_cleanup' );
+		if ( ! wp_next_scheduled( 'vigiguard_security_daily_cleanup' ) ) {
+			wp_schedule_event( strtotime( 'tomorrow 3:00am' ), 'daily', 'vigiguard_security_daily_cleanup' );
 		}
 
 		// Schedule weekly file integrity check (runs Sunday at 2 AM).
-		if ( ! wp_next_scheduled( 'vigipress_security_weekly_file_check' ) ) {
-			wp_schedule_event( strtotime( 'next Sunday 2:00am' ), 'weekly', 'vigipress_security_weekly_file_check' );
+		if ( ! wp_next_scheduled( 'vigiguard_security_weekly_file_check' ) ) {
+			wp_schedule_event( strtotime( 'next Sunday 2:00am' ), 'weekly', 'vigiguard_security_weekly_file_check' );
 		}
 	}
 
@@ -144,7 +144,7 @@ class VigiPress_Activator {
 	private static function log_activation_event() {
 		global $wpdb;
 
-		$table_name = $wpdb->prefix . 'vigipress_logs';
+		$table_name = $wpdb->prefix . 'vigiguard_logs';
 		$user       = wp_get_current_user();
 
 		$wpdb->insert(
@@ -154,7 +154,7 @@ class VigiPress_Activator {
 				'user_id'     => $user->ID,
 				'username'    => $user->user_login,
 				'ip_address'  => self::get_user_ip(),
-				'description' => 'VigiPress Security plugin was activated',
+				'description' => 'VigiGuard Security plugin was activated',
 				'severity'    => 'info',
 				'created_at'  => current_time( 'mysql' ),
 			),

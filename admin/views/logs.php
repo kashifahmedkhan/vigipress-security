@@ -2,8 +2,8 @@
 /**
  * Activity logs page view template.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/admin/views
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/admin/views
  * @since      1.0.0
  * 
  */
@@ -14,23 +14,23 @@ if ( ! defined( 'WPINC' ) ) {
 }
 ?>
 
-<div class="wrap vigipress-wrap">
-	<h1 class="vigipress-page-title">
+<div class="wrap vigiguard-wrap">
+	<h1 class="vigiguard-page-title">
 		<span class="dashicons dashicons-clipboard"></span>
-		<?php esc_html_e( 'Activity Log', 'vigipress-security' ); ?>
+		<?php esc_html_e( 'Activity Log', 'vigiguard-security' ); ?>
 	</h1>
 
-	<div class="vigipress-card">
-		<div class="vigipress-card-body">
+	<div class="vigiguard-card">
+		<div class="vigiguard-card-body">
 			<?php if ( ! empty( $logs ) ) : ?>
 				<table class="wp-list-table widefat fixed striped">
 					<thead>
 						<tr>
-							<th scope="col" class="manage-column"><?php esc_html_e( 'Date & Time', 'vigipress-security' ); ?></th>
-							<th scope="col" class="manage-column"><?php esc_html_e( 'Event', 'vigipress-security' ); ?></th>
-							<th scope="col" class="manage-column"><?php esc_html_e( 'User', 'vigipress-security' ); ?></th>
-							<th scope="col" class="manage-column"><?php esc_html_e( 'IP Address', 'vigipress-security' ); ?></th>
-							<th scope="col" class="manage-column"><?php esc_html_e( 'Severity', 'vigipress-security' ); ?></th>
+							<th scope="col" class="manage-column"><?php esc_html_e( 'Date & Time', 'vigiguard-security' ); ?></th>
+							<th scope="col" class="manage-column"><?php esc_html_e( 'Event', 'vigiguard-security' ); ?></th>
+							<th scope="col" class="manage-column"><?php esc_html_e( 'User', 'vigiguard-security' ); ?></th>
+							<th scope="col" class="manage-column"><?php esc_html_e( 'IP Address', 'vigiguard-security' ); ?></th>
+							<th scope="col" class="manage-column"><?php esc_html_e( 'Severity', 'vigiguard-security' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,7 +57,7 @@ if ( ! defined( 'WPINC' ) ) {
 									if ( ! empty( $log->username ) ) {
 										echo esc_html( $log->username );
 									} else {
-										echo '<em>' . esc_html__( 'Guest', 'vigipress-security' ) . '</em>';
+										echo '<em>' . esc_html__( 'Guest', 'vigiguard-security' ) . '</em>';
 									}
 									?>
 								</td>
@@ -73,7 +73,7 @@ if ( ! defined( 'WPINC' ) ) {
 									);
 									$color           = $severity_colors[ $log->severity ] ?? '#6b7280';
 									?>
-									<span class="vigipress-badge" style="background-color: <?php echo esc_attr( $color ); ?>">
+									<span class="vigiguard-badge" style="background-color: <?php echo esc_attr( $color ); ?>">
 										<?php echo esc_html( ucfirst( $log->severity ) ); ?>
 									</span>
 								</td>
@@ -82,9 +82,9 @@ if ( ! defined( 'WPINC' ) ) {
 					</tbody>
 				</table>
 			<?php else : ?>
-				<div class="vigipress-no-logs">
+				<div class="vigiguard-no-logs">
 					<span class="dashicons dashicons-info"></span>
-					<p><?php esc_html_e( 'No activity logs found.', 'vigipress-security' ); ?></p>
+					<p><?php esc_html_e( 'No activity logs found.', 'vigiguard-security' ); ?></p>
 				</div>
 			<?php endif; ?>
 		</div>

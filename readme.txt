@@ -1,4 +1,4 @@
-=== VigiPress Security ===
+=== VigiGuard Security ===
 Contributors: kashifahmedkhan
 Tags: security, firewall, brute force, login protection, hardening
 Requires at least: 5.8
@@ -12,7 +12,7 @@ Simple one-click WordPress security. Protect your site in 30 seconds.
 
 == Description ==
 
-VigiPress Security provides essential WordPress protection without complexity. One-click hardening, brute force protection, and file integrity monitoring - all with zero configuration required.
+VigiGuard Security provides essential WordPress protection without complexity. One-click hardening, brute force protection, and file integrity monitoring - all with zero configuration required.
 
 **Key Features:**
 
@@ -35,7 +35,7 @@ VigiPress Security provides essential WordPress protection without complexity. O
 
 1. Upload the plugin files to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' screen
-3. Go to VigiPress Security → Dashboard
+3. Go to VigiGuard Security → Dashboard
 4. Click "Fix All Issues (One Click)"
 5. Done! Your site is now protected.
 
@@ -43,11 +43,11 @@ VigiPress Security provides essential WordPress protection without complexity. O
 
 = Will this slow down my site? =
 
-No. VigiPress adds less than 10ms to page load time. Most security plugins add 200ms+.
+No. VigiGuard adds less than 10ms to page load time. Most security plugins add 200ms+.
 
 = Do I need to configure anything? =
 
-Not if you don't want to. Click "Fix All Issues" and VigiPress applies optimal security settings automatically.
+Not if you don't want to. Click "Fix All Issues" and VigiGuard applies optimal security settings automatically.
 
 = What happens if I get locked out? =
 
@@ -55,15 +55,15 @@ Lockouts expire automatically (default: 15 minutes). You can also disable the pl
 
 = Does this work with WooCommerce? =
 
-Yes. VigiPress is compatible with all major plugins including WooCommerce, Contact Form 7, and Yoast SEO.
+Yes. VigiGuard is compatible with all major plugins including WooCommerce, Contact Form 7, and Yoast SEO.
 
 = Can I see what's being blocked? =
 
-Yes. Go to VigiPress Security → Activity Log to see all security events, failed logins, and blocked IPs.
+Yes. Go to VigiGuard Security → Activity Log to see all security events, failed logins, and blocked IPs.
 
 = Will this conflict with other security plugins? =
 
-It's not recommended to run multiple security plugins. Choose one and stick with it. VigiPress is designed to be your only security plugin.
+It's not recommended to run multiple security plugins. Choose one and stick with it. VigiGuard is designed to be your only security plugin.
 
 == Screenshots ==
 

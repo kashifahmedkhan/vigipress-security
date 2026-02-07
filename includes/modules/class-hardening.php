@@ -4,12 +4,12 @@
  *
  * Applies WordPress security hardening measures.
  *
- * @package    VigiPress_Security
- * @subpackage VigiPress_Security/includes/modules
+ * @package    VigiGuard_Security
+ * @subpackage VigiGuard_Security/includes/modules
  * @since      1.0.0
  */
 
-namespace VigiPress_Security\Modules;
+namespace VigiGuard_Security\Modules;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,7 +38,7 @@ class Hardening {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->settings = get_option( 'vigipress_security_settings', array() );
+		$this->settings = get_option( 'vigiguard_security_settings', array() );
 		$this->init_hooks();
 	}
 
@@ -122,7 +122,7 @@ class Hardening {
 
 		// Block ?author=N queries.
 		if ( preg_match( '/author=([0-9]*)/i', $request_uri ) ) {
-			wp_die( esc_html__( 'Forbidden', 'vigipress-security' ), 403 );
+			wp_die( esc_html__( 'Forbidden', 'vigiguard-security' ), 403 );
 		}
 	}
 
@@ -144,7 +144,7 @@ class Hardening {
 		if ( isset( $wp->query_vars['rest_route'] ) && strpos( $wp->query_vars['rest_route'], '/wp/v2/users' ) !== false ) {
 			return new \WP_Error(
 				'rest_forbidden',
-				__( 'Forbidden', 'vigipress-security' ),
+				__( 'Forbidden', 'vigiguard-security' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -186,8 +186,8 @@ class Hardening {
 		// XML-RPC check.
 		$recommendations[] = array(
 			'id'          => 'disable_xmlrpc',
-			'title'       => __( 'Disable XML-RPC', 'vigipress-security' ),
-			'description' => __( 'Prevents brute force attacks via XML-RPC', 'vigipress-security' ),
+			'title'       => __( 'Disable XML-RPC', 'vigiguard-security' ),
+			'description' => __( 'Prevents brute force attacks via XML-RPC', 'vigiguard-security' ),
 			'enabled'     => ! empty( $this->settings['disable_xmlrpc'] ),
 			'safe'        => true, // Safe to auto-enable.
 		);
@@ -195,8 +195,8 @@ class Hardening {
 		// File editing check.
 		$recommendations[] = array(
 			'id'          => 'disable_file_edit',
-			'title'       => __( 'Disable File Editing', 'vigipress-security' ),
-			'description' => __( 'Prevents editing theme/plugin files from admin', 'vigipress-security' ),
+			'title'       => __( 'Disable File Editing', 'vigiguard-security' ),
+			'description' => __( 'Prevents editing theme/plugin files from admin', 'vigiguard-security' ),
 			'enabled'     => ! empty( $this->settings['disable_file_edit'] ) || defined( 'DISALLOW_FILE_EDIT' ),
 			'safe'        => true,
 		);
@@ -204,8 +204,8 @@ class Hardening {
 		// Hide WP version check.
 		$recommendations[] = array(
 			'id'          => 'hide_wp_version',
-			'title'       => __( 'Hide WordPress Version', 'vigipress-security' ),
-			'description' => __( 'Removes version number from page source', 'vigipress-security' ),
+			'title'       => __( 'Hide WordPress Version', 'vigiguard-security' ),
+			'description' => __( 'Removes version number from page source', 'vigiguard-security' ),
 			'enabled'     => ! empty( $this->settings['hide_wp_version'] ),
 			'safe'        => true,
 		);
@@ -213,8 +213,8 @@ class Hardening {
 		// User enumeration check.
 		$recommendations[] = array(
 			'id'          => 'disable_user_enumeration',
-			'title'       => __( 'Block User Enumeration', 'vigipress-security' ),
-			'description' => __( 'Prevents discovering usernames via URL', 'vigipress-security' ),
+			'title'       => __( 'Block User Enumeration', 'vigiguard-security' ),
+			'description' => __( 'Prevents discovering usernames via URL', 'vigiguard-security' ),
 			'enabled'     => ! empty( $this->settings['disable_user_enumeration'] ),
 			'safe'        => true,
 		);
@@ -222,8 +222,8 @@ class Hardening {
 		// Security headers check.
 		$recommendations[] = array(
 			'id'          => 'enable_security_headers',
-			'title'       => __( 'Enable Security Headers', 'vigipress-security' ),
-			'description' => __( 'Adds protective HTTP headers', 'vigipress-security' ),
+			'title'       => __( 'Enable Security Headers', 'vigiguard-security' ),
+			'description' => __( 'Adds protective HTTP headers', 'vigiguard-security' ),
 			'enabled'     => ! empty( $this->settings['enable_security_headers'] ),
 			'safe'        => true,
 		);
@@ -231,8 +231,8 @@ class Hardening {
 		// Login protection check.
 		$recommendations[] = array(
 			'id'          => 'login_protection_enabled',
-			'title'       => __( 'Enable Login Protection', 'vigipress-security' ),
-			'description' => __( 'Blocks brute force login attempts', 'vigipress-security' ),
+			'title'       => __( 'Enable Login Protection', 'vigiguard-security' ),
+			'description' => __( 'Blocks brute force login attempts', 'vigiguard-security' ),
 			'enabled'     => ! empty( $this->settings['login_protection_enabled'] ),
 			'safe'        => true,
 		);
